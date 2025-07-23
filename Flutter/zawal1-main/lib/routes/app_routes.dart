@@ -4,6 +4,7 @@ import '../screens/logo.dart';
 import '../screens/welcomeScreen.dart';
 import '../screens/LoginScreen.dart';
 import '../screens/SignupScreeen.dart';
+import '../screens/ProfileScreen.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -25,9 +26,9 @@ class AppRouter {
       case AppRoutes.home:
         page = const HomeScreen();
         break;
-      // case AppRoutes.profile:
-      //   page = const ProfileScreen();
-      //   break;
+      case AppRoutes.profile:
+        page = const ProfileScreen();
+        break;
       default:
         page = const Scaffold(body: Center(child: Text('No route found')));
     }

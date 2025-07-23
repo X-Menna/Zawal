@@ -132,30 +132,29 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       SizedBox(height: 25.h),
-                      LayoutBuilder(
-                        builder: (context, constraints) {
-                          double height = constraints.maxWidth > 600 ? 60 : 45;
-                          return ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.blue,
-                              minimumSize: Size(double.infinity, height),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.r),
-                              ),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.blue,
+                            //minimumSize: Size(double.infinity),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.r),
                             ),
+                          ),
 
-                            onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                emailController.clear();
-                                passController.clear();
-                              }
-                            },
-                            child: const Text(
-                              "log in",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          );
-                        },
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              Navigator.pushNamed(context, AppRoutes.profile);
+                              emailController.clear();
+                              passController.clear();
+                            }
+                          },
+                          child: const Text(
+                            "log in",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
                       ),
 
                       SizedBox(height: 20.h),
