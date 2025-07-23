@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zawal/screens/Home_screen.dart';
 import '../screens/logo.dart';
 import '../screens/welcomeScreen.dart';
 import '../screens/LoginScreen.dart';
@@ -21,7 +22,12 @@ class AppRouter {
       case AppRoutes.signup:
         page = const SignupScreen();
         break;
-
+      case AppRoutes.home:
+        page = const HomeScreen();
+        break;
+      // case AppRoutes.profile:
+      //   page = const ProfileScreen();
+      //   break;
       default:
         page = const Scaffold(body: Center(child: Text('No route found')));
     }
@@ -44,4 +50,5 @@ class AppRoutes {
   static const login = '/login';
   static const signup = '/signup';
   static const home = '/home';
+  static const profile = '/profile';
 }

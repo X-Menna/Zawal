@@ -1,28 +1,26 @@
 name: zawal
 description: "A new Flutter project."
 
-publish_to: 'none' 
+publish_to: 'none'
 
 version: 1.0.0+1
 
 environment:
   sdk: ^3.7.2
 
-
 dependencies:
+  cupertino_icons: ^1.0.8
   flutter:
     sdk: flutter
+  flutter_bloc: ^9.1.1
   slide_to_act: ^2.0.2
 
-  cupertino_icons: ^1.0.8
-
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_screenutil: ^5.9.3  
 
   flutter_lints: ^5.0.0
-
+  flutter_screenutil: ^5.9.3
+  flutter_test:
+    sdk: flutter
 
 flutter:
 
@@ -31,5 +29,3 @@ flutter:
   assets:
     - assets/images/zawal_logo.png
     - assets/images/welcomepage.png
-
-
