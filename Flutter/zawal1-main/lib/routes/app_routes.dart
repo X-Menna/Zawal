@@ -4,7 +4,7 @@ import '../screens/logo.dart';
 import '../screens/welcomeScreen.dart';
 import '../screens/LoginScreen.dart';
 import '../screens/SignupScreeen.dart';
-import '../screens/ProfileScreen.dart';
+import '../screens/profilescreen.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -12,7 +12,7 @@ class AppRouter {
 
     switch (settings.name) {
       case AppRoutes.logo:
-        page = const logoScreen();
+        page = const LogoScreen();
         break;
       case AppRoutes.welcome:
         page = const welcomeScreen();

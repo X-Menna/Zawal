@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
           onGenerateRoute: AppRouter.generateRoute,
         );
       },
-      child: logoScreen(),
+      child: LogoScreen(),
     );
   }
 }

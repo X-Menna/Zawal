@@ -91,6 +91,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             borderRadius: BorderRadius.circular(20.0),
                           ),
                           hintText: 'name',
+                          prefixIcon: const Icon(Icons.person),
                         ),
                       ),
                       SizedBox(height: 15.h),
@@ -139,6 +140,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             borderRadius: BorderRadius.circular(20.0),
                           ),
                           hintText: 'password',
+                          prefixIcon: const Icon(Icons.lock_outline),
                           suffixIcon: IconButton(
                             icon: Icon(
                               passVisible

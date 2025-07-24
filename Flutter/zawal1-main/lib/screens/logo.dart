@@ -4,14 +4,14 @@ import '../constants/app_colors.dart';
 import '../constants/app_durations.dart';
 import '../routes/app_routes.dart';
 
-class logoScreen extends StatefulWidget {
-  const logoScreen({super.key});
+class LogoScreen extends StatefulWidget {
+  const LogoScreen({super.key});
 
   @override
-  State<logoScreen> createState() => _logoScreenState();
+  State<LogoScreen> createState() => _LogoScreenState();
 }
 
-class _logoScreenState extends State<logoScreen> {
+class _LogoScreenState extends State<LogoScreen> {
   @override
   void initState() {
     super.initState();
