@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zawal/constants/app_colors.dart';
 import '../routes/app_routes.dart';
 import 'LoginScreen.dart';
@@ -14,6 +15,7 @@ class SignupScreen extends StatefulWidget {
 class _SignupScreenState extends State<SignupScreen> {
   final usernameController = TextEditingController();
   final emailController = TextEditingController();
+  final phoneController = TextEditingController();
   final passController = TextEditingController();
   final confirmPassController = TextEditingController();
   bool confirmPassVisible = false;
@@ -24,6 +26,8 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
+
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -85,10 +89,19 @@ class _SignupScreenState extends State<SignupScreen> {
                           return null;
                         },
                         controller: usernameController,
-                        keyboardType: TextInputType.emailAddress,
+                        keyboardType: TextInputType.name,
+                        style: TextStyle(color: Colors.black),
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide(color: Colors.black),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                            borderSide: BorderSide(color: AppColors.primary),
                           ),
                           hintText: 'name',
                           prefixIcon: const Icon(Icons.person),
@@ -107,14 +120,51 @@ class _SignupScreenState extends State<SignupScreen> {
                         },
                         controller: emailController,
                         keyboardType: TextInputType.emailAddress,
+                        style: TextStyle(color: Colors.black),
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide(color: Colors.black),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                            borderSide: BorderSide(color: AppColors.primary),
                           ),
                           hintText: 'Email',
                           prefixIcon: const Icon(Icons.email),
                         ),
                       ),
+                      SizedBox(height: 15.h),
+                      TextFormField(
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "the phone require";
+                          }
+                          return null;
+                        },
+                        controller: phoneController,
+                        keyboardType: TextInputType.phone,
+                        style: TextStyle(color: Colors.black),
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide(color: Colors.black),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                            borderSide: BorderSide(color: AppColors.primary),
+                          ),
+                          hintText: '+02',
+                          prefixIcon: const Icon(Icons.phone),
+                        ),
+                      ),
+
                       SizedBox(height: 15.h),
                       TextFormField(
                         validator: (value) {
@@ -134,10 +184,19 @@ class _SignupScreenState extends State<SignupScreen> {
                         },
                         controller: passController,
                         obscureText: !passVisible,
-                        keyboardType: TextInputType.emailAddress,
+                        keyboardType: TextInputType.visiblePassword,
+                        style: TextStyle(color: Colors.black),
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide(color: Colors.black),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                            borderSide: BorderSide(color: AppColors.primary),
                           ),
                           hintText: 'password',
                           prefixIcon: const Icon(Icons.lock_outline),
@@ -158,6 +217,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       SizedBox(height: 15.h),
                       TextFormField(
                         controller: confirmPassController,
+                        style: TextStyle(color: Colors.black),
                         obscureText: !confirmPassVisible,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -172,6 +232,14 @@ class _SignupScreenState extends State<SignupScreen> {
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide(color: Colors.black),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                            borderSide: BorderSide(color: AppColors.primary),
                           ),
                           hintText: 'Confirm Password',
                           prefixIcon: const Icon(Icons.lock_outline),
@@ -200,10 +268,27 @@ class _SignupScreenState extends State<SignupScreen> {
                             ),
                           ),
 
-                          onPressed: () {
+                          onPressed: () async {
                             if (_formKey.currentState!.validate()) {
+                              final prefs =
+                                  await SharedPreferences.getInstance();
+                              await prefs.setBool('login', true);
+                              await prefs.setString(
+                                'username',
+                                usernameController.text,
+                              );
+
+                              if (!context.mounted) return;
+
+                              Navigator.pushNamedAndRemoveUntil(
+                                context,
+                                AppRoutes.profile,
+                                (rout) => false,
+                              );
+
                               emailController.clear();
                               passController.clear();
+                              phoneController.clear();
                             }
                           },
                           child: const Text(

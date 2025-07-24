@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zawal/constants/app_colors.dart';
 import '../routes/app_routes.dart';
 
@@ -19,6 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -84,9 +86,18 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         controller: emailController,
                         keyboardType: TextInputType.emailAddress,
+                        style: TextStyle(color: Colors.black),
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide(color: Colors.black),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                            borderSide: BorderSide(color: AppColors.primary),
                           ),
                           hintText: 'Email',
                           prefixIcon: const Icon(Icons.email),
@@ -111,10 +122,19 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         controller: passController,
                         obscureText: !passVisible,
-                        keyboardType: TextInputType.emailAddress,
+                        keyboardType: TextInputType.visiblePassword,
+                        style: TextStyle(color: Colors.black),
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide(color: Colors.black),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                            borderSide: BorderSide(color: AppColors.primary),
                           ),
                           hintText: 'password',
                           prefixIcon: const Icon(Icons.lock_outline),
@@ -144,8 +164,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
 
-                          onPressed: () {
+                          onPressed: () async {
                             if (_formKey.currentState!.validate()) {
+                              final SharedPreferences prefs =
+                                  await SharedPreferences.getInstance();
+                              await prefs.setBool('login', true);
                               Navigator.pushNamed(context, AppRoutes.profile);
                               emailController.clear();
                               passController.clear();

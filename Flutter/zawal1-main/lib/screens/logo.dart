@@ -3,6 +3,7 @@ import 'dart:async';
 import '../constants/app_colors.dart';
 import '../constants/app_durations.dart';
 import '../routes/app_routes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LogoScreen extends StatefulWidget {
   const LogoScreen({super.key});
@@ -12,12 +13,25 @@ class LogoScreen extends StatefulWidget {
 }
 
 class _LogoScreenState extends State<LogoScreen> {
+  // const String keyLogin = "login";
   @override
   void initState() {
     super.initState();
-    Timer(AppDurations.medium, () {
+    checkLoginState();
+  }
+
+  void checkLoginState() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isLoggedIn = prefs.getBool('login') ?? false;
+    await Future.delayed(AppDurations.medium);
+
+    if (!mounted) return;
+
+    if (isLoggedIn) {
+      Navigator.pushReplacementNamed(context, AppRoutes.profile);
+    } else {
       Navigator.pushReplacementNamed(context, AppRoutes.welcome);
-    });
+    }
   }
 
   Widget build(BuildContext context) {

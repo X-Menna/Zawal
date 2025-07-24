@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zawal/constants/app_colors.dart';
 import 'package:zawal/constants/app_textstyles.dart';
 import 'package:zawal/routes/app_routes.dart';
@@ -14,9 +15,23 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  String? username = 'user';
   @override
+  void initState() {
+    super.initState();
+    loadUsername();
+  }
+
+  void loadUsername() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      username = prefs.getString('username') ?? 'User';
+    });
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: AppColors.background,
       appBar: AppBar(
         leading: IconButton(
@@ -57,7 +72,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
               SizedBox(height: 5.h),
-              Text('SaraYounan', style: AppTextStyles.heading),
+              Text('$username', style: AppTextStyles.heading),
               SizedBox(height: 20.h),
 
               CustomProfileOption(
@@ -89,8 +104,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
               SizedBox(
                 width: 300.w,
                 child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, AppRoutes.welcome);
+                  onPressed: () async {
+                    final prefs = await SharedPreferences.getInstance();
+                    await prefs.setBool('login', false);
+
+                    if (!context.mounted) return;
+
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      AppRoutes.welcome,
+                      (route) => false,
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
