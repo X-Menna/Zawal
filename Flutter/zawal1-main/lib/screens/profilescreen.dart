@@ -103,17 +103,48 @@ class _ProfileScreenState extends State<ProfileScreen> {
               SizedBox(
                 width: 300.w,
                 child: ElevatedButton(
-                  onPressed: () async {
-                    final prefs = await SharedPreferences.getInstance();
-                    await prefs.setBool('login', false);
-                    await prefs.clear();
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder:
+                          ((context) => AlertDialog(
+                            title: const Text("confirmation"),
+                            content: const Text(
+                              "Are you sure you want to log out",
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                style: TextButton.styleFrom(
+                                  foregroundColor: AppColors.primary,
+                                ),
+                                child: const Text("cancel"),
+                              ),
+                              TextButton(
+                                onPressed: () async {
+                                  Navigator.pop(context);
+                                  final prefs =
+                                      await SharedPreferences.getInstance();
+                                  await prefs.setBool('login', false);
+                                  await prefs.clear();
 
-                    if (!context.mounted) return;
+                                  if (!context.mounted) return;
 
-                    Navigator.pushNamedAndRemoveUntil(
-                      context,
-                      AppRoutes.welcome,
-                      (route) => false,
+                                  Navigator.pushNamedAndRemoveUntil(
+                                    context,
+                                    AppRoutes.welcome,
+                                    (route) => false,
+                                  );
+                                },
+                                style: TextButton.styleFrom(
+                                  foregroundColor: AppColors.primary,
+                                ),
+                                child: const Text("Log out"),
+                              ),
+                            ],
+                          )),
                     );
                   },
                   style: ElevatedButton.styleFrom(
