@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zawal/constants/app_colors.dart';
 import 'package:zawal/constants/app_textstyles.dart';
 import 'package:zawal/routes/app_routes.dart';
-import 'package:zawal/widgets/custom_Profile_option.dart';
+import 'package:zawal/widgets/custom_profile_option.dart';
 //import '../routes/app_routes.dart';
 
 class ProfileScreen extends StatefulWidget {
