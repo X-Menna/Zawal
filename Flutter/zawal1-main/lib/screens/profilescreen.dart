@@ -6,6 +6,9 @@ import 'package:zawal/constants/app_textstyles.dart';
 import 'package:zawal/routes/app_routes.dart';
 import 'package:zawal/widgets/custom_profile_option.dart';
 
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
+
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
@@ -19,6 +22,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void initState() {
     super.initState();
     loadUsername();
+  }
+
+  File? _imageFile;
+  final ImagePicker _picker = ImagePicker();
+
+  Future<void> _pickImage(ImageSource source) async {
+    final pickedFile = await _picker.pickImage(source: source);
+
+    if (pickedFile != null) {
+      setState(() {
+        _imageFile = File(pickedFile.path);
+      });
+    }
   }
 
   void loadUsername() async {
@@ -51,20 +67,97 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   children: [
                     CircleAvatar(
                       radius: 50.r,
-                      backgroundColor: AppColors.white,
-                      child: Icon(Icons.person, color: AppColors.grey),
+                      backgroundColor: AppColors.grey,
+                      backgroundImage:
+                          _imageFile != null
+                              ? FileImage(_imageFile!) as ImageProvider
+                              : null,
+                      child:
+                          _imageFile == null
+                              ? Icon(
+                                Icons.person,
+                                color: AppColors.grey,
+                                size: 50.r,
+                              )
+                              : null,
                     ),
 
                     Positioned(
                       bottom: 0,
                       right: 4.w,
-                      child: Container(
-                        padding: EdgeInsets.all(6.r),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AppColors.primary,
+
+                      child: InkWell(
+                        onTap: () {
+                          showModalBottomSheet(
+                            context: context,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.vertical(
+                                top: Radius.circular(20.r),
+                              ),
+                            ),
+                            builder:
+                                (context) => SafeArea(
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      vertical: 20.h,
+                                      horizontal: 16.w,
+                                    ),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        if (_imageFile != null) ...[
+                                          Text(
+                                            'Show profile photo',
+                                            style: TextStyle(
+                                              fontSize: 18.sp,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          SizedBox(height: 10.h),
+                                          ClipRRect(
+                                            borderRadius: BorderRadius.circular(
+                                              15.r,
+                                            ),
+                                            child: Image.file(
+                                              _imageFile!,
+                                              width: 140.w,
+                                              height: 140.h,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                          SizedBox(height: 20.h),
+                                        ],
+
+                                        CustomProfileOption(
+                                          icon: Icons.camera_alt,
+                                          title: 'Take a photo',
+                                          onTap: () {
+                                            Navigator.of(context).pop();
+                                            _pickImage(ImageSource.camera);
+                                          },
+                                        ),
+                                        CustomProfileOption(
+                                          icon: Icons.photo_library,
+                                          title: 'Choose from gallery',
+                                          onTap: () {
+                                            Navigator.of(context).pop();
+                                            _pickImage(ImageSource.gallery);
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                          );
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(6.r),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.primary,
+                          ),
+                          child: Icon(Icons.camera_alt, color: Colors.white),
                         ),
-                        child: Icon(Icons.edit),
                       ),
                     ),
                   ],
