@@ -5,14 +5,14 @@ import '../constants/app_durations.dart';
 import '../routes/app_routes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LogoScreen extends StatefulWidget {
-  const LogoScreen({super.key});
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
 
   @override
-  State<LogoScreen> createState() => _LogoScreenState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _LogoScreenState extends State<LogoScreen> {
+class _SplashScreenState extends State<SplashScreen> {
   // const String keyLogin = "login";
   @override
   void initState() {

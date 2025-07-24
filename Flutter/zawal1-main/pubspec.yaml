@@ -13,8 +13,8 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
-  shared_preferences: ^2.5.3
   slide_to_act: ^2.0.2
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
 

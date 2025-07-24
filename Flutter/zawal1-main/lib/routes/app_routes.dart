@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:zawal/screens/Home_screen.dart';
-import '../screens/logo.dart';
-import '../screens/welcomeScreen.dart';
-import '../screens/LoginScreen.dart';
-import '../screens/SignupScreeen.dart';
+import '../screens/splash_screen.dart';
+import '../screens/welcome_screen.dart';
+import '../screens/login_screen.dart';
+import '../screens/signup_screen.dart';
 import '../screens/profilescreen.dart';
 
 class AppRouter {
@@ -12,10 +12,10 @@ class AppRouter {
 
     switch (settings.name) {
       case AppRoutes.logo:
-        page = const LogoScreen();
+        page = const SplashScreen();
         break;
       case AppRoutes.welcome:
-        page = const welcomeScreen();
+        page = const WelcomeScreen();
         break;
       case AppRoutes.login:
         page = const LoginScreen();

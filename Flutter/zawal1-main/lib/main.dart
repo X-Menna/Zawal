@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zawal/routes/app_routes.dart';
 import 'constants/app_colors.dart';
 import 'constants/app_textstyles.dart';
-import 'screens/logo.dart';
+import 'screens/splash_screen.dart';
 
 //import 'package:shared_preferences/shared_preferences.dart';
 void main() {
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
           onGenerateRoute: AppRouter.generateRoute,
         );
       },
-      child: LogoScreen(),
+      child: SplashScreen(),
     );
   }
 }

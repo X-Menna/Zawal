@@ -6,14 +6,14 @@ import '../constants/app_colors.dart';
 import '../widgets/custom_button.dart';
 import '../routes/app_routes.dart';
 
-class welcomeScreen extends StatefulWidget {
-  const welcomeScreen({super.key});
+class WelcomeScreen extends StatefulWidget {
+  const WelcomeScreen({super.key});
 
   @override
-  State<welcomeScreen> createState() => _welcomeScreenState();
+  State<WelcomeScreen> createState() => _WelcomeScreenState();
 }
 
-class _welcomeScreenState extends State<welcomeScreen> {
+class _WelcomeScreenState extends State<WelcomeScreen> {
   String selectedButton = '';
   @override
   void initState() {

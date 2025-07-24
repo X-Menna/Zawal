@@ -5,7 +5,6 @@ import 'package:zawal/constants/app_colors.dart';
 import 'package:zawal/constants/app_textstyles.dart';
 import 'package:zawal/routes/app_routes.dart';
 import 'package:zawal/widgets/custom_profile_option.dart';
-//import '../routes/app_routes.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -107,6 +106,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   onPressed: () async {
                     final prefs = await SharedPreferences.getInstance();
                     await prefs.setBool('login', false);
+                    await prefs.clear();
 
                     if (!context.mounted) return;
 
