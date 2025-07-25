@@ -194,7 +194,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               CustomProfileOption(
                 icon: Icons.lock,
                 title: 'Change password',
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, AppRoutes.changepassword);
+                },
               ),
               CustomProfileOption(
                 icon: Icons.favorite,
@@ -228,7 +230,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             actions: [
                               TextButton(
                                 onPressed: () {
-                                  Navigator.pop(context);
+                                  Navigator.pushReplacementNamed(
+                                    context,
+                                    AppRoutes.profile,
+                                  );
                                 },
                                 style: TextButton.styleFrom(
                                   foregroundColor: AppColors.primary,

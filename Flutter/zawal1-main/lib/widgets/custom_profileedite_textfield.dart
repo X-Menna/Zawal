@@ -27,17 +27,13 @@ class CustomProfileEditeTextfield extends StatelessWidget {
           decoration: InputDecoration(
             hintText: hintText,
             hintStyle: TextStyle(color: AppColors.grey, fontSize: 14.sp),
+            filled: true,
+            fillColor: AppColors.grey.withOpacity(0.1),
             contentPadding: EdgeInsets.symmetric(
-              vertical: 14.h,
+              vertical: 16.h,
               horizontal: 16.w,
             ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12.r),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Theme.of(context).primaryColor),
-              borderRadius: BorderRadius.circular(12.r),
-            ),
+            border: InputBorder.none,
           ),
         ),
         SizedBox(height: 16.h),

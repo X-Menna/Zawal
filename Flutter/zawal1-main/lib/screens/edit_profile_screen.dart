@@ -122,7 +122,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             actions: [
                               TextButton(
                                 onPressed: () {
-                                  Navigator.pop(context);
+                                  Navigator.pushReplacementNamed(
+                                    context,
+                                    AppRoutes.profile,
+                                  );
                                 },
                                 style: TextButton.styleFrom(
                                   foregroundColor: AppColors.primary,

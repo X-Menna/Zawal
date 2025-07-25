@@ -171,7 +171,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       TextFormField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return "the phone require";
+                            return "please enter your phone";
                           }
                           return null;
                         },
@@ -316,6 +316,10 @@ class _SignupScreenState extends State<SignupScreen> {
                               await prefs.setString(
                                 'phone',
                                 phoneController.text,
+                              );
+                              await prefs.setString(
+                                'password',
+                                passController.text,
                               );
 
                               if (!context.mounted) return;
