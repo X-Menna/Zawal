@@ -18,10 +18,11 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   String? username = 'user';
+
   @override
   void initState() {
     super.initState();
-    loadUsername();
+    loadUserData();
   }
 
   File? _imageFile;
@@ -31,26 +32,54 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final pickedFile = await _picker.pickImage(source: source);
 
     if (pickedFile != null) {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('image_path', pickedFile.path);
+
       setState(() {
         _imageFile = File(pickedFile.path);
       });
     }
   }
 
-  void loadUsername() async {
+  void _showFullImage(BuildContext context) {
+    showDialog(
+      context: context,
+      builder:
+          (_) => Dialog(
+            backgroundColor: Colors.transparent,
+            child: GestureDetector(
+              onTap: () => Navigator.of(context).pop(),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(15.r),
+                child: Image.file(_imageFile!, fit: BoxFit.contain),
+              ),
+            ),
+          ),
+    );
+  }
+
+  void loadUserData() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
       username = prefs.getString('username') ?? 'User';
+
+      final imagePath = prefs.getString('image_path');
+      if (imagePath != null) {
+        _imageFile = File(imagePath);
+      }
     });
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: AppColors.background,
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            /*honescreen*/
+          },
           icon: Icon(Icons.arrow_back, color: AppColors.primary),
         ),
         title: Text('Profile', style: AppTextStyles.heading),
@@ -89,6 +118,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: InkWell(
                         onTap: () {
                           showModalBottomSheet(
+                            backgroundColor: Colors.white,
                             context: context,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.vertical(
@@ -105,28 +135,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
-                                        if (_imageFile != null) ...[
-                                          Text(
-                                            'Show profile photo',
-                                            style: TextStyle(
-                                              fontSize: 18.sp,
-                                              fontWeight: FontWeight.bold,
-                                            ),
+                                        if (_imageFile != null)
+                                          CustomProfileOption(
+                                            icon: Icons.image,
+                                            title: 'Shoe profile photo',
+                                            onTap: () {
+                                              Navigator.of(context).pop();
+                                              _showFullImage(context);
+                                            },
                                           ),
-                                          SizedBox(height: 10.h),
-                                          ClipRRect(
-                                            borderRadius: BorderRadius.circular(
-                                              15.r,
-                                            ),
-                                            child: Image.file(
-                                              _imageFile!,
-                                              width: 140.w,
-                                              height: 140.h,
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                          SizedBox(height: 20.h),
-                                        ],
 
                                         CustomProfileOption(
                                           icon: Icons.camera_alt,
@@ -170,7 +187,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               CustomProfileOption(
                 icon: Icons.person,
                 title: 'Edit Profile',
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, AppRoutes.editprofile);
+                },
               ),
               CustomProfileOption(
                 icon: Icons.lock,
@@ -201,6 +220,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       context: context,
                       builder:
                           ((context) => AlertDialog(
+                            backgroundColor: AppColors.white,
                             title: const Text("confirmation"),
                             content: const Text(
                               "Are you sure you want to log out",

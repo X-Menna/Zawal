@@ -15,6 +15,7 @@ class SignupScreen extends StatefulWidget {
 class _SignupScreenState extends State<SignupScreen> {
   final usernameController = TextEditingController();
   final emailController = TextEditingController();
+  final birthdateController = TextEditingController();
   final phoneController = TextEditingController();
   final passController = TextEditingController();
   final confirmPassController = TextEditingController();
@@ -137,6 +138,35 @@ class _SignupScreenState extends State<SignupScreen> {
                           prefixIcon: const Icon(Icons.email),
                         ),
                       ),
+
+                      SizedBox(height: 15.h),
+                      TextFormField(
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "please enter your birthday";
+                          }
+                          return null;
+                        },
+                        controller: birthdateController,
+                        keyboardType: TextInputType.datetime,
+                        style: TextStyle(color: Colors.black),
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide(color: Colors.black),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                            borderSide: BorderSide(color: AppColors.primary),
+                          ),
+                          hintText: '5/5/2025',
+                          prefixIcon: const Icon(Icons.calendar_month),
+                        ),
+                      ),
+
                       SizedBox(height: 15.h),
                       TextFormField(
                         validator: (value) {
@@ -276,6 +306,16 @@ class _SignupScreenState extends State<SignupScreen> {
                               await prefs.setString(
                                 'username',
                                 usernameController.text,
+                              );
+
+                              await prefs.setString(
+                                'birthdate',
+                                birthdateController.text,
+                              );
+
+                              await prefs.setString(
+                                'phone',
+                                phoneController.text,
                               );
 
                               if (!context.mounted) return;

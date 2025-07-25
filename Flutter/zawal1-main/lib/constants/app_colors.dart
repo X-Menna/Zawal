@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// 🎨 ألوان موحدة في المشروع
 class AppColors {
   static const Color primary = Colors.blue;
   static const Color secondary = Color(0xFF00BFA6);

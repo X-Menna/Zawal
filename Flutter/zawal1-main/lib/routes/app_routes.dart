@@ -5,6 +5,7 @@ import '../screens/welcome_screen.dart';
 import '../screens/login_screen.dart';
 import '../screens/signup_screen.dart';
 import '../screens/profilescreen.dart';
+import '../screens/edit_profile_screen.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -29,6 +30,9 @@ class AppRouter {
       case AppRoutes.profile:
         page = const ProfileScreen();
         break;
+      case AppRoutes.editprofile:
+        page = const EditProfileScreen();
+        break;
       default:
         page = const Scaffold(body: Center(child: Text('No route found')));
     }
@@ -40,7 +44,7 @@ class AppRouter {
         // 🌀 Fade transition
         return FadeTransition(opacity: animation, child: child);
       },
-      transitionDuration: const Duration(milliseconds: 500), // سرعة الانتقال
+      transitionDuration: const Duration(milliseconds: 500),
     );
   }
 }
@@ -52,4 +56,5 @@ class AppRoutes {
   static const signup = '/signup';
   static const home = '/home';
   static const profile = '/profile';
+  static const editprofile = '/editprofile';
 }
