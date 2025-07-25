@@ -65,7 +65,7 @@ class AboutScreen extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 15.sp,
                             height: 1.6,
-                            color: Colors.grey[800],
+                            color: Colors.black,
                           ),
                         ),
                         SizedBox(height: 24.h),
@@ -93,7 +93,10 @@ class AboutScreen extends StatelessWidget {
                               Expanded(
                                 child: Text(
                                   "Smart destination suggestions based on your vibe.",
-                                  style: TextStyle(fontSize: 14.5.sp),
+                                  style: TextStyle(
+                                    fontSize: 14.5.sp,
+                                    color: Colors.black,
+                                  ),
                                 ),
                               ),
                             ],
@@ -114,7 +117,10 @@ class AboutScreen extends StatelessWidget {
                               Expanded(
                                 child: Text(
                                   "Like and save the places that speak to your soul.",
-                                  style: TextStyle(fontSize: 14.5.sp),
+                                  style: TextStyle(
+                                    fontSize: 14.5.sp,
+                                    color: Colors.black,
+                                  ),
                                 ),
                               ),
                             ],
@@ -135,7 +141,10 @@ class AboutScreen extends StatelessWidget {
                               Expanded(
                                 child: Text(
                                   "Explore destinations from every continent.",
-                                  style: TextStyle(fontSize: 14.5.sp),
+                                  style: TextStyle(
+                                    fontSize: 14.5.sp,
+                                    color: Colors.black,
+                                  ),
                                 ),
                               ),
                             ],

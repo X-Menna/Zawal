@@ -20,10 +20,11 @@ class CustomProfileEditeTextfield extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(labelText, style: AppTextStyles.body),
+        Text(labelText, style: TextStyle(color: Colors.black)),
         SizedBox(height: 6.h),
         TextFormField(
           controller: controller,
+          style: const TextStyle(color: Colors.black),
           decoration: InputDecoration(
             hintText: hintText,
             hintStyle: TextStyle(color: AppColors.grey, fontSize: 14.sp),

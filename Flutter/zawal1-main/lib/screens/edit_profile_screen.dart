@@ -77,89 +77,91 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         backgroundColor: AppColors.background,
       ),
 
-      body: Padding(
-        padding: EdgeInsets.all(16.w),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              CustomProfileEditeTextfield(
-                labelText: 'Name',
-                hintText: '$username',
-                controller: nameController,
-              ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(16.w),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                CustomProfileEditeTextfield(
+                  labelText: 'Name',
+                  hintText: '$username',
+                  controller: nameController,
+                ),
 
-              CustomProfileEditeTextfield(
-                labelText: 'BirthDate',
-                hintText: '$birthdate',
-                controller: birthdateController,
-              ),
+                CustomProfileEditeTextfield(
+                  labelText: 'BirthDate',
+                  hintText: '$birthdate',
+                  controller: birthdateController,
+                ),
 
-              CustomProfileEditeTextfield(
-                labelText: 'Phone',
-                hintText: '$phone',
-                controller: phoneController,
-              ),
+                CustomProfileEditeTextfield(
+                  labelText: 'Phone',
+                  hintText: '$phone',
+                  controller: phoneController,
+                ),
 
-              SizedBox(height: 10.h),
-              SizedBox(
-                width: 300.w,
-                child: ElevatedButton(
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder:
-                          ((context) => AlertDialog(
-                            backgroundColor: AppColors.white,
-                            title: const Text(
-                              "confirmation",
-                              style: TextStyle(color: AppColors.primary),
-                            ),
-                            content: const Text(
-                              "Are you sure you want to save the changes?",
-                              style: TextStyle(color: AppColors.primary),
-                            ),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pushReplacementNamed(
-                                    context,
-                                    AppRoutes.profile,
-                                  );
-                                },
-                                style: TextButton.styleFrom(
-                                  foregroundColor: AppColors.primary,
-                                ),
-                                child: const Text("cancel"),
+                SizedBox(height: 10.h),
+                SizedBox(
+                  width: 300.w,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder:
+                            ((context) => AlertDialog(
+                              backgroundColor: AppColors.white,
+                              title: const Text(
+                                "confirmation",
+                                style: TextStyle(color: AppColors.primary),
                               ),
-                              TextButton(
-                                onPressed: () async {
-                                  Navigator.pop(context);
-                                  saveUserData();
-                                },
-                                style: TextButton.styleFrom(
-                                  foregroundColor: AppColors.primary,
-                                ),
-                                child: const Text("ُSave"),
+                              content: const Text(
+                                "Are you sure you want to save the changes?",
+                                style: TextStyle(color: AppColors.primary),
                               ),
-                            ],
-                          )),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primary,
-                    minimumSize: Size(double.infinity, 50.h),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.r),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pushReplacementNamed(
+                                      context,
+                                      AppRoutes.profile,
+                                    );
+                                  },
+                                  style: TextButton.styleFrom(
+                                    foregroundColor: AppColors.primary,
+                                  ),
+                                  child: const Text("cancel"),
+                                ),
+                                TextButton(
+                                  onPressed: () async {
+                                    Navigator.pop(context);
+                                    saveUserData();
+                                  },
+                                  style: TextButton.styleFrom(
+                                    foregroundColor: AppColors.primary,
+                                  ),
+                                  child: const Text("ُSave"),
+                                ),
+                              ],
+                            )),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.primary,
+                      minimumSize: Size(double.infinity, 50.h),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.r),
+                      ),
+                    ),
+                    child: const Text(
+                      "Edit",
+                      style: TextStyle(color: Colors.white),
                     ),
                   ),
-                  child: const Text(
-                    "Edit",
-                    style: TextStyle(color: Colors.white),
-                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
