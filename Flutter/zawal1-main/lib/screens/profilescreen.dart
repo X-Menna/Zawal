@@ -201,7 +201,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               CustomProfileOption(
                 icon: Icons.favorite,
                 title: 'Loved',
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, AppRoutes.favorite);
+                },
               ),
               CustomProfileOption(
                 icon: Icons.brightness_6,
@@ -211,7 +213,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               CustomProfileOption(
                 icon: Icons.info,
                 title: 'About',
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, AppRoutes.about);
+                },
               ),
               SizedBox(height: 10.h),
               SizedBox(

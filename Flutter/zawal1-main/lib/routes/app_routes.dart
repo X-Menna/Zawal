@@ -7,6 +7,8 @@ import '../screens/signup_screen.dart';
 import '../screens/profilescreen.dart';
 import '../screens/edit_profile_screen.dart';
 import '../screens/change_password_screen.dart';
+import '../screens/about_screen.dart';
+import '../screens/favorite_screen.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -37,6 +39,12 @@ class AppRouter {
       case AppRoutes.changepassword:
         page = const ChangePasswordScreen();
         break;
+      case AppRoutes.favorite:
+        page = const FavoriteScreen();
+        break;
+      case AppRoutes.about:
+        page = const AboutScreen();
+        break;
       default:
         page = const Scaffold(body: Center(child: Text('No route found')));
     }
@@ -62,4 +70,6 @@ class AppRoutes {
   static const profile = '/profile';
   static const editprofile = '/editprofile';
   static const changepassword = '/changepassword';
+  static const favorite = '/favorite';
+  static const about = '/about';
 }

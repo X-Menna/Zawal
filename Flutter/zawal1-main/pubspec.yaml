@@ -32,3 +32,5 @@ flutter:
   assets:
     - assets/images/zawal_logo.png
     - assets/images/welcomepage.png
+    - assets/images/about_bg.png
+    
