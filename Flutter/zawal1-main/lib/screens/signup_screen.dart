@@ -326,7 +326,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
                               Navigator.pushNamedAndRemoveUntil(
                                 context,
-                                AppRoutes.profile,
+                                AppRoutes.home,
                                 (rout) => false,
                               );
 

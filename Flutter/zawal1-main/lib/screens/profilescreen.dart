@@ -78,7 +78,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            /*honescreen*/
+            Navigator.pushReplacementNamed(context, AppRoutes.home);
           },
           icon: Icon(Icons.arrow_back, color: AppColors.primary),
         ),

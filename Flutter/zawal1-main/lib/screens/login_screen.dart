@@ -169,7 +169,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               final SharedPreferences prefs =
                                   await SharedPreferences.getInstance();
                               await prefs.setBool('login', true);
-                              Navigator.pushNamed(context, AppRoutes.profile);
+                              Navigator.pushNamed(context, AppRoutes.home);
                               emailController.clear();
                               passController.clear();
                             }
