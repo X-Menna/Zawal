@@ -13,15 +13,14 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
-  slide_to_act: ^2.0.2
-  shared_preferences: ^2.0.15
+  flutter_screenutil: ^5.9.3
   image_picker: ^1.0.4
   permission_handler: ^11.3.1
+  shared_preferences: ^2.0.15
+  slide_to_act: ^2.0.2
 
 dev_dependencies:
-
   flutter_lints: ^5.0.0
-  flutter_screenutil: ^5.9.3
   flutter_test:
     sdk: flutter
 
@@ -33,4 +32,9 @@ flutter:
     - assets/images/zawal_logo.png
     - assets/images/welcomepage.png
     - assets/images/about_bg.png
-    
+    - assets/images/japan.jpeg
+    - assets/images/italy.jpg
+    - assets/images/egypt.jpg
+    - assets/images/thailand.jpg
+    - assets/images/france.jpg
+    - assets/images/brazil.jpg
