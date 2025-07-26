@@ -1,19 +1,21 @@
 class TripModel {
   final String destination;
+  final String language;
   final bool isSolo;
-  final DateTime startDate;
-  final DateTime endDate;
+  final String? groupType;
+  final String season;
   final double budget;
-  final String tripType;
-  final List<String> feelings;
+  final String activity;
+  final int age;
 
   TripModel({
     required this.destination,
+    required this.language,
     required this.isSolo,
-    required this.startDate,
-    required this.endDate,
+    this.groupType,
+    required this.season,
     required this.budget,
-    required this.tripType,
-    required this.feelings,
+    required this.activity,
+    required this.age,
   });
 }
