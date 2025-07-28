@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zawal/screens/Home_screen.dart';
+import 'package:zawal/screens/reccomendation_screen.dart';
 import '../screens/splash_screen.dart';
 import '../screens/welcome_screen.dart';
 import '../screens/login_screen.dart';
@@ -45,6 +46,11 @@ class AppRouter {
       case AppRoutes.about:
         page = const AboutScreen();
         break;
+      case AppRoutes.result:
+        final args = settings.arguments as Map<String, dynamic>;
+        page = RecommendationScreen(response: args);
+        break;
+
       default:
         page = const Scaffold(body: Center(child: Text('No route found')));
     }
@@ -72,4 +78,5 @@ class AppRoutes {
   static const changepassword = '/changepassword';
   static const favorite = '/favorite';
   static const about = '/about';
+  static const result = '/result';
 }

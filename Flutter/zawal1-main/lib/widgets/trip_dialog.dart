@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../constants/app_colors.dart';
+import 'package:zawal/screens/reccomendation_screen.dart';
 import '../constants/app_textstyles.dart';
-import '../widgets/custom_button.dart';
 import '../cubits/trip_cubit.dart';
 import '../models/trip_model.dart';
 
@@ -26,36 +25,11 @@ class _TripDialogState extends State<TripDialog> {
   String _activity = '';
 
   final Map<String, List<String>> _seasonActivities = {
-  'Spring': [
-    'Hiking',
-    'Ballooning',
-    'Gardens',
-    'Yoga',
-    'Festivals',
-  ],
-  'Summer': [
-    'Island Hopping',
-    'Snorkeling',
-    'Cruises',
-    'Concerts',
-    'Markets',
-  ],
-  'Fall': [
-    'Retreats',
-    'Cycling',
-    'Pumpkin Farms',
-    'Workshops',
-    'City Tours',
-  ],
-  'Winter': [
-    'Auroras',
-    'Spas',
-    'Snow Villages',
-    'Safaris',
-    'Christmas Markets',
-  ],
-};
-
+    'Spring': ['Hiking', 'Ballooning', 'Gardens', 'Yoga', 'Festivals'],
+    'Summer': ['Island Hopping', 'Snorkeling', 'Cruises', 'Concerts', 'Markets'],
+    'Fall': ['Retreats', 'Cycling', 'Pumpkin Farms', 'Workshops', 'City Tours'],
+    'Winter': ['Auroras', 'Spas', 'Snow Villages', 'Safaris', 'Christmas Markets'],
+  };
 
   @override
   void initState() {
@@ -64,55 +38,74 @@ class _TripDialogState extends State<TripDialog> {
   }
 
   @override
+  void dispose() {
+    _countryController.dispose();
+    _budgetController.dispose();
+    _ageController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      title: Text('Trip Details', style: AppTextStyles.heading),
-      content: SingleChildScrollView(
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              _buildTextField(_countryController, 'Country'),
-              _buildLanguageDropdown(),
-              _buildSoloSwitch(),
-              if (!_isSolo) _buildGroupTypeDropdown(),
-              _buildSeasonDropdown(),
-              _buildActivityDropdown(),
-              _buildTextField(_budgetController, 'Budget', isNumber: true),
-              _buildTextField(_ageController, 'Age', isNumber: true),
-            ],
+    return BlocListener<TripCubit, TripState>(
+      listener: (context, state) {
+        if (state is TripSuccess) {
+          Navigator.of(context).pop(); // close the dialog
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => RecommendationScreen(response: state.responseData!),
+            ),
+          );
+        } else if (state is TripFailure) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("Error: ${state.error}")),
+          );
+        }
+      },
+      child: AlertDialog(
+        title: Text('Trip Details', style: AppTextStyles.heading),
+        content: SingleChildScrollView(
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                _buildTextField(_countryController, 'Country'),
+                _buildLanguageDropdown(),
+                _buildSoloSwitch(),
+                if (!_isSolo) _buildGroupTypeDropdown(),
+                _buildSeasonDropdown(),
+                _buildActivityDropdown(),
+                _buildTextField(_budgetController, 'Budget', isNumber: true),
+                _buildTextField(_ageController, 'Age', isNumber: true),
+              ],
+            ),
           ),
         ),
+        actions: [
+          ElevatedButton(
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                final trip = TripModel(
+                  destination: _countryController.text,
+                  language: _language,
+                  isSolo: _isSolo,
+                  season: _season,
+                  budget: int.tryParse(_budgetController.text) ?? 0,
+                  activity: _activity,
+                  age: int.tryParse(_ageController.text) ?? 0,
+                );
+                context.read<TripCubit>().submitTrip(trip);
+              }
+            },
+            child: const Text("Generate"),
+          ),
+        ],
       ),
-      actions: [
-        CustomButton(
-          text: 'Generate',
-          onPressed: () {
-            if (_formKey.currentState!.validate()) {
-              final model = TripModel(
-                destination: _countryController.text,
-                isSolo: _isSolo,
-                groupType: _groupType,
-                language: _language,
-                season: _season,
-                activity: _activity,
-                budget: double.parse(_budgetController.text),
-                age: int.parse(_ageController.text),
-              );
-              context.read<TripCubit>().submitTrip(model);
-              Navigator.pop(context);
-            }
-          },
-        ),
-      ],
     );
   }
 
-  Widget _buildTextField(
-    TextEditingController controller,
-    String label, {
-    bool isNumber = false,
-  }) {
+  Widget _buildTextField(TextEditingController controller, String label, {bool isNumber = false}) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: TextFormField(
@@ -127,10 +120,9 @@ class _TripDialogState extends State<TripDialog> {
   Widget _buildLanguageDropdown() {
     return DropdownButtonFormField<String>(
       value: _language,
-      items:
-          ['English', 'Arabic', 'Spanish', 'French', 'Japanese']
-              .map((lang) => DropdownMenuItem(value: lang, child: Text(lang)))
-              .toList(),
+      items: ['English', 'Arabic', 'Spanish', 'French', 'Japanese']
+          .map((lang) => DropdownMenuItem(value: lang, child: Text(lang)))
+          .toList(),
       onChanged: (val) => setState(() => _language = val!),
       decoration: const InputDecoration(labelText: 'Language'),
     );
@@ -147,11 +139,10 @@ class _TripDialogState extends State<TripDialog> {
   Widget _buildGroupTypeDropdown() {
     return DropdownButtonFormField<String>(
       value: _groupType,
-      items:
-          ['Family', 'Family with Kids']
-              .map((type) => DropdownMenuItem(value: type, child: Text(type)))
-              .toList(),
-      onChanged: (val) => setState(() => _groupType = val!),
+      items: ['Family', 'Family with Kids']
+          .map((type) => DropdownMenuItem(value: type, child: Text(type)))
+          .toList(),
+      onChanged: (val) => setState(() => _groupType = val),
       decoration: const InputDecoration(labelText: 'Group Type'),
     );
   }
@@ -159,18 +150,15 @@ class _TripDialogState extends State<TripDialog> {
   Widget _buildSeasonDropdown() {
     return DropdownButtonFormField<String>(
       value: _season,
-      items:
-          _seasonActivities.keys
-              .map(
-                (season) =>
-                    DropdownMenuItem(value: season, child: Text(season)),
-              )
-              .toList(),
-      onChanged:
-          (val) => setState(() {
-            _season = val!;
-            _activity = _seasonActivities[_season]!.first;
-          }),
+      items: _seasonActivities.keys
+          .map((season) => DropdownMenuItem(value: season, child: Text(season)))
+          .toList(),
+      onChanged: (val) {
+        setState(() {
+          _season = val!;
+          _activity = _seasonActivities[_season]!.first;
+        });
+      },
       decoration: const InputDecoration(labelText: 'Season'),
     );
   }
@@ -178,12 +166,14 @@ class _TripDialogState extends State<TripDialog> {
   Widget _buildActivityDropdown() {
     return DropdownButtonFormField<String>(
       value: _activity,
-      items:
-          _seasonActivities[_season]!
-              .map((act) => DropdownMenuItem(value: act, child: Text(act)))
-              .toList(),
+      items: _seasonActivities[_season]!
+          .map((act) => DropdownMenuItem(value: act, child: Text(act)))
+          .toList(),
       onChanged: (val) => setState(() => _activity = val!),
       decoration: const InputDecoration(labelText: 'Activity'),
     );
   }
 }
+
+
+

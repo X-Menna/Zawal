@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:zawal/routes/app_routes.dart';
 import 'package:zawal/screens/profilescreen.dart';
 import '../constants/app_colors.dart';
 import '../cubits/theme_cubit.dart';
@@ -26,14 +25,13 @@ class HomeScreen extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.person, color: Colors.white),
-            
-onPressed: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => const ProfileScreen(),
-                                ),
-                              );
-                            },
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const ProfileScreen(),
+                ),
+              );
+            },
           ),
         ],
       ),
@@ -49,27 +47,43 @@ onPressed: () {
           ),
           const SizedBox(height: 12),
 
-          
           CountryTiles(),
 
           const SizedBox(height: 24),
 
-          
           Center(
-            child: BlocBuilder<TripCubit, TripState>(
-              builder: (context, state) {
-                if (state.isLoading) {
-                  return const CircularProgressIndicator();
-                } else if (state.trip != null) {
-                  return Text(
-                    'Trip to ${state.trip!.destination} added!',
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  );
-                } else {
-                  return const Text('Click + to plan your next trip ✈️');
-                }
-              },
-            ),
+            child:
+            BlocBuilder<TripCubit, TripState>(
+  builder: (context, state) {
+    if (state is TripLoading) {
+      return const CircularProgressIndicator();
+    } else if (state is TripFailure) {
+      return Text("Error: ${state.error}");
+    } else if (state is TripSuccess && state.responseData != null) {
+      final data = state.responseData!;
+      final status = data['Status'] ?? 'Unknown status';
+      final message = data['Message'] ?? '';
+      final firstAlternative = (data['Alternatives'] as List?)?.first;
+
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text("Status: $status", style: Theme.of(context).textTheme.headlineSmall),
+          if (message.isNotEmpty) Text("Message: $message"),
+          const SizedBox(height: 8),
+          if (firstAlternative != null) ...[
+            Text("Recommended: ${firstAlternative['country']}"),
+            Text("Score: ${firstAlternative['score']}"),
+          ],
+        ],
+      );
+    } else {
+      return const Text('Click + to plan your next trip ✈️');
+    }
+  },
+)
+
+            
           ),
         ],
       ),
@@ -84,3 +98,4 @@ onPressed: () {
     );
   }
 }
+

@@ -33,6 +33,8 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
               : ListView.builder(
                 itemCount: favoriteItems.length,
                 itemBuilder: (context, index) {
+                  return null;
+                
                   //i will show favorite items here
                 },
               ),

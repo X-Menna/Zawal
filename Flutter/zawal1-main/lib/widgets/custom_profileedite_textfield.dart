@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zawal/constants/app_colors.dart';
-import 'package:zawal/constants/app_textstyles.dart';
 
 class CustomProfileEditeTextfield extends StatelessWidget {
   const CustomProfileEditeTextfield({
