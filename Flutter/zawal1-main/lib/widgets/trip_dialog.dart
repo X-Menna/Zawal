@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../constants/app_colors.dart';
 import '../constants/app_textstyles.dart';
-import '../widgets/custom_button.dart';
+import 'custom_button.dart';
 import '../cubits/trip_cubit.dart';
 import '../models/trip_model.dart';
 

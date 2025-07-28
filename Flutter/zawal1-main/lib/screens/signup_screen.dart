@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zawal/constants/app_colors.dart';
+import 'package:zawal/widgets/app_button.dart';
 import '../routes/app_routes.dart';
 import 'login_screen.dart';
 
@@ -288,58 +289,44 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                       ),
                       SizedBox(height: 25.h),
-                      SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blue,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.r),
-                            ),
-                          ),
+                      AppButton(
+                        text: 'Sign up',
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            final prefs = await SharedPreferences.getInstance();
+                            await prefs.setBool('login', true);
+                            await prefs.setString(
+                              'username',
+                              usernameController.text,
+                            );
 
-                          onPressed: () async {
-                            if (_formKey.currentState!.validate()) {
-                              final prefs =
-                                  await SharedPreferences.getInstance();
-                              await prefs.setBool('login', true);
-                              await prefs.setString(
-                                'username',
-                                usernameController.text,
-                              );
+                            await prefs.setString(
+                              'birthdate',
+                              birthdateController.text,
+                            );
 
-                              await prefs.setString(
-                                'birthdate',
-                                birthdateController.text,
-                              );
+                            await prefs.setString(
+                              'phone',
+                              phoneController.text,
+                            );
+                            await prefs.setString(
+                              'password',
+                              passController.text,
+                            );
 
-                              await prefs.setString(
-                                'phone',
-                                phoneController.text,
-                              );
-                              await prefs.setString(
-                                'password',
-                                passController.text,
-                              );
+                            if (!context.mounted) return;
 
-                              if (!context.mounted) return;
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              AppRoutes.home,
+                              (rout) => false,
+                            );
 
-                              Navigator.pushNamedAndRemoveUntil(
-                                context,
-                                AppRoutes.home,
-                                (rout) => false,
-                              );
-
-                              emailController.clear();
-                              passController.clear();
-                              phoneController.clear();
-                            }
-                          },
-                          child: const Text(
-                            "Sign up",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
+                            emailController.clear();
+                            passController.clear();
+                            phoneController.clear();
+                          }
+                        },
                       ),
 
                       SizedBox(height: 20.h),

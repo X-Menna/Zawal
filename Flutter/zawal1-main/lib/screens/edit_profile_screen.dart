@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zawal/constants/app_colors.dart';
 import 'package:zawal/constants/app_textstyles.dart';
 import 'package:zawal/routes/app_routes.dart';
+import 'package:zawal/widgets/app_button.dart';
+import 'package:zawal/widgets/custom_confirmation_dialog.dart';
 //import 'package:zawal/routes/app_routes.dart';
 import 'package:zawal/widgets/custom_profileedite_textfield.dart';
 
@@ -103,62 +105,31 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ),
 
                 SizedBox(height: 10.h),
-                SizedBox(
-                  width: 300.w,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder:
-                            ((context) => AlertDialog(
-                              backgroundColor: AppColors.white,
-                              title: const Text(
-                                "confirmation",
-                                style: TextStyle(color: AppColors.primary),
-                              ),
-                              content: const Text(
-                                "Are you sure you want to save the changes?",
-                                style: TextStyle(color: AppColors.primary),
-                              ),
-                              actions: [
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.pushReplacementNamed(
-                                      context,
-                                      AppRoutes.profile,
-                                    );
-                                  },
-                                  style: TextButton.styleFrom(
-                                    foregroundColor: AppColors.primary,
-                                  ),
-                                  child: const Text("cancel"),
-                                ),
-                                TextButton(
-                                  onPressed: () async {
-                                    Navigator.pop(context);
-                                    saveUserData();
-                                  },
-                                  style: TextButton.styleFrom(
-                                    foregroundColor: AppColors.primary,
-                                  ),
-                                  child: const Text("ُSave"),
-                                ),
-                              ],
-                            )),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.primary,
-                      minimumSize: Size(double.infinity, 50.h),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.r),
-                      ),
-                    ),
-                    child: const Text(
-                      "Edit",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
+                AppButton(
+                  text: 'Edite',
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder:
+                          (context) => CustomConfirmationDialog(
+                            title: 'Confirmation',
+                            content:
+                                'Are you sure you want to save the changes?',
+                            confirmText: 'Save',
+                            cancelText: 'Cancel',
+                            onConfirm: () {
+                              Navigator.pop(context);
+                              saveUserData();
+                            },
+                            onCancle: () {
+                              Navigator.pushReplacementNamed(
+                                context,
+                                AppRoutes.profile,
+                              );
+                            },
+                          ),
+                    );
+                  },
                 ),
               ],
             ),
