@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zawal/constants/app_colors.dart';
+import 'package:zawal/widgets/app_button.dart';
 import '../routes/app_routes.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -153,32 +154,18 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       SizedBox(height: 25.h),
-                      SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blue,
-                            //minimumSize: Size(double.infinity),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.r),
-                            ),
-                          ),
-
-                          onPressed: () async {
-                            if (_formKey.currentState!.validate()) {
-                              final SharedPreferences prefs =
-                                  await SharedPreferences.getInstance();
-                              await prefs.setBool('login', true);
-                              Navigator.pushNamed(context, AppRoutes.home);
-                              emailController.clear();
-                              passController.clear();
-                            }
-                          },
-                          child: const Text(
-                            "log in",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
+                      AppButton(
+                        text: 'Log in',
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            final SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            await prefs.setBool('login', true);
+                            Navigator.pushNamed(context, AppRoutes.home);
+                            emailController.clear();
+                            passController.clear();
+                          }
+                        },
                       ),
 
                       SizedBox(height: 20.h),

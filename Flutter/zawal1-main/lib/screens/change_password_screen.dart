@@ -4,6 +4,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zawal/constants/app_colors.dart';
 import 'package:zawal/constants/app_textstyles.dart';
 import 'package:zawal/routes/app_routes.dart';
+import 'package:zawal/widgets/app_button.dart';
+import 'package:zawal/widgets/custom_confirmation_dialog.dart';
 import 'package:zawal/widgets/password_field.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
@@ -24,23 +26,30 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   bool _isNewVisible = false;
   bool _isConfirmVisible = false;
 
+  String? currentPasswordError;
+
   void _changePassword() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? storedPassword = prefs.getString('password');
+
+    if (currentpassController.text != storedPassword) {
+      setState(() {
+        currentPasswordError = 'Old password is incorrect';
+        currentpassController.clear();
+        newpassController.clear();
+        confirmPassController.clear();
+      });
+      _formKey.currentState!.validate();
+      return;
+    }
+
     if (_formKey.currentState!.validate()) {
-      final prefs = await SharedPreferences.getInstance();
-      String? storedPassword = prefs.getString('password');
-
-      if (currentpassController.text != storedPassword) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Old password is incorrect")),
-        );
-        return;
-      }
-
       await prefs.setString('password', newpassController.text);
 
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Password changed successfully")),
       );
+
       Navigator.pushReplacementNamed(context, AppRoutes.profile);
     }
   }
@@ -81,6 +90,11 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter your current password';
+                    }
+                    if (currentPasswordError != null) {
+                      final error = currentPasswordError;
+                      currentPasswordError = null;
+                      return error;
                     }
                     return null;
                   },
@@ -132,62 +146,31 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   },
                 ),
                 SizedBox(height: 24.h),
-                SizedBox(
-                  width: 300.w,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder:
-                            ((context) => AlertDialog(
-                              backgroundColor: AppColors.white,
-                              title: const Text(
-                                "confirmation",
-                                style: TextStyle(color: AppColors.primary),
-                              ),
-                              content: const Text(
-                                "Are you sure you want to change your password?",
-                                style: TextStyle(color: AppColors.primary),
-                              ),
-                              actions: [
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.pushReplacementNamed(
-                                      context,
-                                      AppRoutes.profile,
-                                    );
-                                  },
-                                  style: TextButton.styleFrom(
-                                    foregroundColor: AppColors.primary,
-                                  ),
-                                  child: const Text("cancel"),
-                                ),
-                                TextButton(
-                                  onPressed: () async {
-                                    Navigator.pop(context);
-                                    _changePassword();
-                                  },
-                                  style: TextButton.styleFrom(
-                                    foregroundColor: AppColors.primary,
-                                  ),
-                                  child: const Text("ُChange"),
-                                ),
-                              ],
-                            )),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.primary,
-                      minimumSize: Size(double.infinity, 50.h),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.r),
-                      ),
-                    ),
-                    child: const Text(
-                      "Change password",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
+                AppButton(
+                  text: 'Change Password',
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder:
+                          (context) => CustomConfirmationDialog(
+                            title: 'Confirmation',
+                            content:
+                                'Are you sure you want to change your password?',
+                            confirmText: 'Change',
+                            cancelText: 'Cancel',
+                            onConfirm: () {
+                              Navigator.pop(context);
+                              _changePassword();
+                            },
+                            onCancle: () {
+                              Navigator.pushReplacementNamed(
+                                context,
+                                AppRoutes.profile,
+                              );
+                            },
+                          ),
+                    );
+                  },
                 ),
               ],
             ),
