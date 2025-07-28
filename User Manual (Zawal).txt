@@ -1,0 +1,12 @@
+User Manual:
+
+To begin, sign up or log in using your email and password. 
+Email -> sara@gmail.com
+Password -> 7623874751375
+ Once logged in, you'll land on the home page showcasing featured destinations—simply scroll to browse countries and tap any to discover their unique culture. Personalize your experience by changing the app theme via the 🌓 icon in the top-left corner.
+
+To plan your trip:
+Tap the + (plus) button at the bottom.
+Enter details like destination, season, and budget.
+Hit "Generate" for your customized itinerary.
+Access your profile (👤 top-right) to view the About section or adjust settings. Happy travels!
