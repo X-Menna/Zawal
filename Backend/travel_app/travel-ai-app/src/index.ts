@@ -1,43 +1,18 @@
-// import express, { Request, Response } from 'express';
-// import { dataBaseConnection } from './config/db';
-// const app = express();
-// const PORT = 3000;
-
-// app.use(express.json());
-
-// app.get('/test-dbconnection', async (req: Request, res: Response) => {
-//   try {
-//     //will not work ,there is no data yet
-//     const conn = await dataBaseConnection.getConnection();
-//     const [rows] = await conn.query('SELECT * FROM users LIMIT 5');
-//     conn.release(); //close connection and return it back to pool to be reused
-
-//     res.json({
-//       message: ' Database connection successful!',
-//       users: rows,
-//     });
-//   } catch (error) {
-//     console.error('❌ Database error:', error);
-//     res.status(500).json({ message: '❌ Failed to connect to DB' });
-//   }
-// });
-
-// app.listen(PORT, () => {
-//   console.log(` Server is running at http://localhost:${PORT}`);
-// });
-
-
+import dotenv from "dotenv";
 import express from 'express';
-import authRoutes from './routes/auth.routes';
-
+import authRoutes from './routes/user.routes';
+import preferencesRoutes from './routes/preferences.routes';
+dotenv.config();
+console.log("JWT_SECRET is:", process.env.JWT_SECRET);
 
 const app = express();
-const PORT = 8000;
+const PORT =process.env.PORT || 4000;
 
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);     
 
+app.use('/api/preferences', preferencesRoutes);
 
 app.get('/', (req, res) => {
   res.send('Welcome to Travel API');
