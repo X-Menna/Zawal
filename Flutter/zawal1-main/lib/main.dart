@@ -27,24 +27,28 @@ class MyApp extends StatelessWidget {
             BlocProvider<ThemeCubit>(create: (_) => ThemeCubit()),
             BlocProvider<TripCubit>(create: (_) => TripCubit()),
           ],
-          child: MaterialApp(
-            title: 'Zawal',
-            debugShowCheckedModeBanner: false,
-            theme: ThemeData(
-              brightness: Brightness.light,
-              primaryColor: AppColors.primary,
-              scaffoldBackgroundColor: AppColors.background,
-              fontFamily: 'Poppins',
-              textTheme: const TextTheme(bodyMedium: AppTextStyles.body),
-            ),
-            darkTheme: ThemeData(
-              brightness: Brightness.dark,
-              primaryColor: AppColors.primary,
-              fontFamily: 'Poppins',
-            ),
-            themeMode: ThemeMode.system,
-            initialRoute: AppRoutes.logo,
-            onGenerateRoute: AppRouter.generateRoute,
+          child: BlocBuilder<ThemeCubit, ThemeState>(
+            builder: (context, themeState) {
+              return MaterialApp(
+                title: 'Zawal',
+                debugShowCheckedModeBanner: false,
+                theme: ThemeData(
+                  brightness: Brightness.light,
+                  primaryColor: AppColors.primary,
+                  scaffoldBackgroundColor: AppColors.background,
+                  fontFamily: 'Poppins',
+                  textTheme: const TextTheme(bodyMedium: AppTextStyles.body),
+                ),
+                darkTheme: ThemeData(
+                  brightness: Brightness.dark,
+                  primaryColor: AppColors.primary,
+                  fontFamily: 'Poppins',
+                ),
+                themeMode: themeState.isDark ? ThemeMode.dark : ThemeMode.light, 
+                initialRoute: AppRoutes.logo,
+                onGenerateRoute: AppRouter.generateRoute,
+              );
+            },
           ),
         );
       },

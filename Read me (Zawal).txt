@@ -1,0 +1,15 @@
+To run your flutter application type the following into your terminal:
+Flutter pub get
+Flutter run
+
+To run your Backend application:-
+Run the following file
+index.ts
+
+To run your Ai application :-
+These are the used packages to run
+pandas	-> pip install pandas	
+requests -> pip install requests	
+python-dotenv -> pip install python-dotenv	
+openai -> pip install openai	
+cachetools -> pip install cachetools

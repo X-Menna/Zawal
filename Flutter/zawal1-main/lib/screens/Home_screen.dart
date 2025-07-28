@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:zawal/routes/app_routes.dart';
+import 'package:zawal/screens/profilescreen.dart';
 import '../constants/app_colors.dart';
 import '../cubits/theme_cubit.dart';
 import '../cubits/trip_cubit.dart';
@@ -24,7 +26,14 @@ class HomeScreen extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.person, color: Colors.white),
-            onPressed: () => Navigator.pushNamed(context, '/profile'),
+            
+onPressed: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => const ProfileScreen(),
+                                ),
+                              );
+                            },
           ),
         ],
       ),

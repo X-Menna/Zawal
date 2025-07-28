@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../constants/app_colors.dart';
 import '../constants/app_textstyles.dart';
 import 'custom_button.dart';
@@ -16,12 +15,53 @@ class TripDialog extends StatefulWidget {
 
 class _TripDialogState extends State<TripDialog> {
   final _formKey = GlobalKey<FormState>();
-  final _destinationController = TextEditingController();
+  final _countryController = TextEditingController();
   final _budgetController = TextEditingController();
-  bool _isSolo = false;
-  DateTime? _startDate, _endDate;
-  String _tripType = 'Relaxation';
-  List<String> _feelings = [];
+  final _ageController = TextEditingController();
+
+  String _language = 'English';
+  bool _isSolo = true;
+  String? _groupType;
+  String _season = 'Spring';
+  String _activity = '';
+
+  final Map<String, List<String>> _seasonActivities = {
+  'Spring': [
+    'Hiking',
+    'Ballooning',
+    'Gardens',
+    'Yoga',
+    'Festivals',
+  ],
+  'Summer': [
+    'Island Hopping',
+    'Snorkeling',
+    'Cruises',
+    'Concerts',
+    'Markets',
+  ],
+  'Fall': [
+    'Retreats',
+    'Cycling',
+    'Pumpkin Farms',
+    'Workshops',
+    'City Tours',
+  ],
+  'Winter': [
+    'Auroras',
+    'Spas',
+    'Snow Villages',
+    'Safaris',
+    'Christmas Markets',
+  ],
+};
+
+
+  @override
+  void initState() {
+    super.initState();
+    _activity = _seasonActivities[_season]!.first;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +72,14 @@ class _TripDialogState extends State<TripDialog> {
           key: _formKey,
           child: Column(
             children: [
-              _buildTextField(_destinationController, 'Destination'),
-              _buildSwitch(),
-              _buildDatePickers(),
+              _buildTextField(_countryController, 'Country'),
+              _buildLanguageDropdown(),
+              _buildSoloSwitch(),
+              if (!_isSolo) _buildGroupTypeDropdown(),
+              _buildSeasonDropdown(),
+              _buildActivityDropdown(),
               _buildTextField(_budgetController, 'Budget', isNumber: true),
-              _buildDropdown(),
-              _buildFeelings(),
+              _buildTextField(_ageController, 'Age', isNumber: true),
             ],
           ),
         ),
@@ -46,17 +88,16 @@ class _TripDialogState extends State<TripDialog> {
         CustomButton(
           text: 'Generate',
           onPressed: () {
-            if (_formKey.currentState!.validate() &&
-                _startDate != null &&
-                _endDate != null) {
+            if (_formKey.currentState!.validate()) {
               final model = TripModel(
-                destination: _destinationController.text,
+                destination: _countryController.text,
                 isSolo: _isSolo,
-                startDate: _startDate!,
-                endDate: _endDate!,
+                groupType: _groupType,
+                language: _language,
+                season: _season,
+                activity: _activity,
                 budget: double.parse(_budgetController.text),
-                tripType: _tripType,
-                feelings: _feelings,
+                age: int.parse(_ageController.text),
               );
               context.read<TripCubit>().submitTrip(model);
               Navigator.pop(context);
@@ -72,15 +113,30 @@ class _TripDialogState extends State<TripDialog> {
     String label, {
     bool isNumber = false,
   }) {
-    return TextFormField(
-      controller: controller,
-      decoration: InputDecoration(labelText: label),
-      keyboardType: isNumber ? TextInputType.number : TextInputType.text,
-      validator: (value) => value!.isEmpty ? 'Required' : null,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: TextFormField(
+        controller: controller,
+        decoration: InputDecoration(labelText: label),
+        keyboardType: isNumber ? TextInputType.number : TextInputType.text,
+        validator: (value) => value!.isEmpty ? 'Required' : null,
+      ),
     );
   }
 
-  Widget _buildSwitch() {
+  Widget _buildLanguageDropdown() {
+    return DropdownButtonFormField<String>(
+      value: _language,
+      items:
+          ['English', 'Arabic', 'Spanish', 'French', 'Japanese']
+              .map((lang) => DropdownMenuItem(value: lang, child: Text(lang)))
+              .toList(),
+      onChanged: (val) => setState(() => _language = val!),
+      decoration: const InputDecoration(labelText: 'Language'),
+    );
+  }
+
+  Widget _buildSoloSwitch() {
     return SwitchListTile(
       value: _isSolo,
       title: const Text('Traveling Solo?'),
@@ -88,69 +144,46 @@ class _TripDialogState extends State<TripDialog> {
     );
   }
 
-  Widget _buildDatePickers() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        TextButton(
-          onPressed: () => _pickDate(isStart: true),
-          child: Text(
-            _startDate == null
-                ? 'Start Date'
-                : _startDate!.toString().split(' ')[0],
-          ),
-        ),
-        TextButton(
-          onPressed: () => _pickDate(isStart: false),
-          child: Text(
-            _endDate == null ? 'End Date' : _endDate!.toString().split(' ')[0],
-          ),
-        ),
-      ],
-    );
-  }
-
-  void _pickDate({required bool isStart}) async {
-    final picked = await showDatePicker(
-      context: context,
-      firstDate: DateTime.now(),
-      lastDate: DateTime(2100),
-      initialDate: DateTime.now(),
-    );
-    if (picked != null) {
-      setState(() {
-        isStart ? _startDate = picked : _endDate = picked;
-      });
-    }
-  }
-
-  Widget _buildDropdown() {
+  Widget _buildGroupTypeDropdown() {
     return DropdownButtonFormField<String>(
-      value: _tripType,
+      value: _groupType,
       items:
-          ['Relaxation', 'Adventure', 'Cultural', 'Romantic']
+          ['Family', 'Family with Kids']
               .map((type) => DropdownMenuItem(value: type, child: Text(type)))
               .toList(),
-      onChanged: (val) => setState(() => _tripType = val!),
+      onChanged: (val) => setState(() => _groupType = val!),
+      decoration: const InputDecoration(labelText: 'Group Type'),
     );
   }
 
-  Widget _buildFeelings() {
-    return Column(
-      children:
-          ['Relaxed', 'Adventurous', 'Inspired']
+  Widget _buildSeasonDropdown() {
+    return DropdownButtonFormField<String>(
+      value: _season,
+      items:
+          _seasonActivities.keys
               .map(
-                (feeling) => CheckboxListTile(
-                  value: _feelings.contains(feeling),
-                  title: Text(feeling),
-                  onChanged: (val) {
-                    setState(() {
-                      val! ? _feelings.add(feeling) : _feelings.remove(feeling);
-                    });
-                  },
-                ),
+                (season) =>
+                    DropdownMenuItem(value: season, child: Text(season)),
               )
               .toList(),
+      onChanged:
+          (val) => setState(() {
+            _season = val!;
+            _activity = _seasonActivities[_season]!.first;
+          }),
+      decoration: const InputDecoration(labelText: 'Season'),
+    );
+  }
+
+  Widget _buildActivityDropdown() {
+    return DropdownButtonFormField<String>(
+      value: _activity,
+      items:
+          _seasonActivities[_season]!
+              .map((act) => DropdownMenuItem(value: act, child: Text(act)))
+              .toList(),
+      onChanged: (val) => setState(() => _activity = val!),
+      decoration: const InputDecoration(labelText: 'Activity'),
     );
   }
 }
