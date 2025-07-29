@@ -17,7 +17,7 @@ class TripLoadingFailed extends TripState {}
 class TripCubit extends Cubit<TripState> {
   TripCubit(super.initialState);
 
-  RecommendationResponse? response;
+  recommendation_model? response;
 
   // void getJustHomeData() async {
   //   emit(TripLoading());
@@ -50,7 +50,7 @@ class TripCubit extends Cubit<TripState> {
         "age": trip.age,
       },
     ).then((value) {
-      response = RecommendationResponse.fromJson(value.data);
+      response = recommendation_model.fromJson(value.data);
       emit(TripSuccess());
     }).catchError((error) {
       emit(TripLoadingFailed());

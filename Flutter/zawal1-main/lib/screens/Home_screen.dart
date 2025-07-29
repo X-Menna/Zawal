@@ -61,26 +61,25 @@ class HomeScreen extends StatelessWidget {
       return const Text("Failed to fetch recommendations.");
     } else if (state is TripSuccess) {
       final cubit = context.read<TripCubit>();
-      final data = cubit.response;
+      final model = cubit.response;
 
-      if (data == null) return const Text("No data available.");
+      if (model == null || model.preferences == null) {
+        return const Text("No data available.");
+      }
 
-      final status = data.status ?? 'Unknown';
-      final message = data.message ?? '';
-      final firstAlternative = data.alternatives?.isNotEmpty == true
-          ? data.alternatives!.first
-          : null;
+      final prefs = model.preferences!;
 
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Status: $status", style: Theme.of(context).textTheme.headlineSmall),
-          if (message.isNotEmpty) Text("Message: $message"),
-          const SizedBox(height: 8),
-          if (firstAlternative != null) ...[
-            Text("Recommended: ${firstAlternative.country}"),
-            Text("Score: ${firstAlternative.score}"),
-          ],
+          Text("Destination: ${prefs.country ?? 'N/A'}", style: Theme.of(context).textTheme.headlineSmall),
+          Text("Budget: ${prefs.budget ?? 'N/A'}"),
+          Text("Age: ${prefs.age ?? 'N/A'}"),
+          Text("Season: ${prefs.season ?? 'N/A'}"),
+          Text("Language: ${prefs.language ?? 'N/A'}"),
+          Text("Solo Travel: ${prefs.isSoloTravel == 1 ? 'Yes' : 'No'}"),
+          if (prefs.activities != null && prefs.activities!.isNotEmpty)
+            Text("Activities: ${prefs.activities!.join(', ')}"),
         ],
       );
     } else {

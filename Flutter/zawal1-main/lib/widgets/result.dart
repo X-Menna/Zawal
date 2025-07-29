@@ -2,52 +2,38 @@ import 'package:flutter/material.dart';
 import 'package:zawal/models/recommendation_model.dart';
 
 class RecommendationResultsWidget extends StatelessWidget {
-  final RecommendationResponse data;
+  final recommendation_model data;
 
   const RecommendationResultsWidget({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
+    final prefs = data.preferences;
+
+    if (prefs == null) {
+      return const Center(child: Text("No preferences found."));
+    }
+
     return SingleChildScrollView(
       padding: const EdgeInsets.all(12),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Status: ${data.status}", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-          Text("Message: ${data.message}", style: const TextStyle(fontSize: 16)),
-          const SizedBox(height: 16),
-          Text("Safety Report:", style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-          Text("Safety Score: ${data.safetyReport.safetyScore}"),
-          Text("Capital Checked: ${data.safetyReport.capitalChecked}"),
-          Text("Data Source: ${data.safetyReport.dataSource}"),
-          Text("Last Updated: ${data.safetyReport.lastUpdated}"),
-          const Divider(),
-          Text("Alternatives:", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-          ...data.alternatives.map((alt) => Card(
-            elevation: 2,
-            margin: const EdgeInsets.symmetric(vertical: 8),
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Country: ${alt.country}", style: const TextStyle(fontWeight: FontWeight.bold)),
-                  Text("Score: ${alt.score.toStringAsFixed(2)}"),
-                  Text("Kid Friendly: ${alt.details.scores.kidFriendly}"),
-                  Text("Season: ${alt.details.scores.season}"),
-                  Text("Preference Match: ${alt.details.scores.preferenceMatch.toStringAsFixed(2)}"),
-                  Text("Safety Score: ${alt.details.safety.safetyScore}"),
-                  Text("AI Analysis Error: ${alt.details.aiAnalysis.error}"),
-                  Text("AI Details: ${alt.details.aiAnalysis.details}"),
-                ],
-              ),
-            ),
-          )),
+          Text("User Preferences", style: Theme.of(context).textTheme.titleLarge),
+          const SizedBox(height: 10),
+          Text("Country: ${prefs.country ?? 'N/A'}"),
+          Text("Budget: ${prefs.budget ?? 'N/A'}"),
+          Text("Age: ${prefs.age ?? 'N/A'}"),
+          Text("Activities: ${prefs.activities?.join(', ') ?? 'N/A'}"),
+          Text("Kid Friendly: ${prefs.isKidFriendlyRequired == 1 ? 'Yes' : 'No'}"),
+          Text("Solo Travel: ${prefs.isSoloTravel == 1 ? 'Yes' : 'No'}"),
+          Text("Language: ${prefs.language ?? 'N/A'}"),
+          Text("Season: ${prefs.season ?? 'N/A'}"),
+          const SizedBox(height: 10),
+          Text("Created At: ${prefs.createdAt ?? 'N/A'}"),
+          Text("Updated At: ${prefs.updatedAt ?? 'N/A'}"),
         ],
       ),
     );
   }
 }
-
-
-

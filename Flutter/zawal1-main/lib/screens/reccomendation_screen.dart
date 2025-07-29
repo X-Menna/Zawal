@@ -8,7 +8,7 @@ class RecommendationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final data = RecommendationResponse.fromJson(response);
+    final data = recommendation_model.fromJson(response);
 
     return Scaffold(
       appBar: AppBar(title: const Text('Recommendations')),
