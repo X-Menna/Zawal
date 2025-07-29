@@ -5,6 +5,6 @@ export interface user{
     birthDate?: Date; 
     phone?: string;    
     password: string;
-    create_at: Date; //timestamp
-    update_at: Date; //timestamp
+    create_at: Date;
+    update_at: Date;
 }

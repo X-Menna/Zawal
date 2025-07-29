@@ -26,7 +26,7 @@ export const getUserByEmail = async (email: string): Promise<any> => {
 export const getUserByName = async (username: string): Promise<any> => {
     const connection = await dataBaseConnection.getConnection();
     const [rows]: any = await connection.execute(
-        "SELECT * FROM users WHERE username = ? ",
+        "SELECT * FROM users WHERE name = ? ",
         [username]
     );
     return rows.length ? rows[0]:null;

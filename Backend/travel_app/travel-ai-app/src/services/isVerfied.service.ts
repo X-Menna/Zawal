@@ -12,7 +12,6 @@ export const isVerified = async (email: string, hashedPassword: string ) => {
         const isMatch = await bcrypt.compare(hashedPassword, user.password);
         return isMatch;
     }
-
     catch (err) {
         console.log("Error in user validation: ", err);
         console.log(err);

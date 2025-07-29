@@ -9,7 +9,6 @@ export const authGuard = (req: Request, res: Response, next: NextFunction) => {
     }
 
     const token = authHeader.split(' ')[1];
-
     try {
         const decoded = verifyToken(token);
         (req as any).user = decoded; //save data in request to use in every route

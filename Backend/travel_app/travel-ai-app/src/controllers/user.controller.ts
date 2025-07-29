@@ -84,58 +84,59 @@ export const register_handle = async (req: Request, res: Response) => {
 export const resetUsername = async (req: Request, res: Response) => {
     const username = req.body.username;
     const newusername = req.body.newusername;
-    const currpassword = req.body.password;
+    const currpassword = req.body.currpassword;
 
     if (!username || !newusername || !currpassword) {
-        return res.status(401).json({ error: 'All fields are required.' })
+        return res.status(400).json({ error: 'All fields are required.' });
     }
+
     try {
         const user = await getUserByName(username);
         if (!user) {
-            return res.status(404).json({ error: 'User not found.' })
+            return res.status(404).json({ error: 'User not found.' });
         }
 
-        if (user.password !== currpassword) {
-            return res.status(401).json({ error: 'Incorrect current password.' })
+        const passwordMatch = await bcrypt.compare(currpassword, user.password);
+        if (!passwordMatch) {
+            return res.status(401).json({ error: 'Incorrect current password.' });
         }
 
-        await updateUsername(user.id, newusername)
-        return res.status(200).json({messege: 'Username updated successfully.'})
+        await updateUsername(user.id, newusername);
+        return res.status(200).json({ message: 'Username updated successfully.' });
+
     } catch (err) {
         console.error(err);
-        return res.status(500).json({error:
-            'Internal Server Error.'
-        })
+        return res.status(500).json({ error: 'Internal Server Error.' });
     }
-}
+};
 
 
 export const resetPassword = async (req: Request, res: Response) => {
     const username = req.body.username;
     const currpassword = req.body.currpassword;
     const newpassword = req.body.newpassword;
-
     if (!currpassword || !newpassword || !username) {
-        return res.status(401).json({error: 'All fields are required.'})
+        return res.status(400).json({ error: 'All fields are required.' });
     }
 
     try {
-        const user =await getUserByName(username);
+        const user = await getUserByName(username);
         if (!user) {
-            return res.status(404).json({error: 'User not found.' })
+            return res.status(404).json({ error: 'User not found.' });
         }
 
-        if (user.password !== currpassword) {
-            return res.status(401).json({error: 'Incorrect old password.'})
+        const isMatch = await bcrypt.compare(currpassword, user.password);
+        if (!isMatch) {
+            return res.status(401).json({ error: 'Incorrect old password.' });
         }
 
-        await updatePassword(user.id, newpassword);
-        return res.status(200).json({message: 'Password updated successfully.'})
+        const hashedNewPassword = await bcrypt.hash(newpassword, 10);
+        await updatePassword(user.id, hashedNewPassword);
+
+        return res.status(200).json({ message: 'Password updated successfully.' });
+
     } catch (err) {
         console.error(err);
-        return res.status(500).json({
-            error:
-                'Internal Server Error.'
-        })
+        return res.status(500).json({ error: 'Internal Server Error.' });
     }
-}
+};
