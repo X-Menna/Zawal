@@ -13,3 +13,5 @@ requests -> pip install requests
 python-dotenv -> pip install python-dotenv	
 openai -> pip install openai	
 cachetools -> pip install cachetools
+pip install fastapi
+The AI system utilizes an API provider, which requires an internet connection. To address this functionality, please refer to the zawal_api.py module.

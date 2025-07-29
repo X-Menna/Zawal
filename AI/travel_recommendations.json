@@ -1,0 +1,137 @@
+{
+    "Status": "Safe",
+    "Message": "Destination meets safety requirements",
+    "Safety_report": {
+        "safety_score": 4.2,
+        "safety_message": "Extremely safe with low crime rates",
+        "weather_alerts": [],
+        "data_source": "Static data (offline mode)",
+        "last_updated": "2025-07-29T21:22:31.131237",
+        "capital_checked": "Tokyo"
+    },
+    "Recommendations": {
+        "details": {
+            "safety": {
+                "safety_score": 4.2,
+                "safety_message": "Extremely safe with low crime rates",
+                "weather_alerts": [],
+                "data_source": "Static data (offline mode)",
+                "last_updated": "2025-07-29T21:22:31.131237",
+                "capital_checked": "Tokyo"
+            },
+            "scores": {
+                "overall": 3.16,
+                "preferenceMatch": 0.0,
+                "budget": "17-21",
+                "season": "Fall/Spring",
+                "kidFriendly": "89.0%"
+            },
+            "aiAnalysis": {
+                "summary": "Japan offers 9 recorded attractions. Top places include Yoyogi Park, Meiji Shrine, Tokyo Skytree. Average visitor age is 22 and it is kid-friendly.",
+                "tips": [
+                    "Best seasons: Fall/Spring",
+                    "Average budget range: 17-21",
+                    "Try local foods: Park Snacks, Gyudon (beef bowl), Ramen"
+                ]
+            }
+        },
+        "places": [
+            {
+                "place": "Iconic Torii Gates",
+                "city": "Kyoto",
+                "match_score": 66.0,
+                "budget_level": "low",
+                "solo_score": 7.0,
+                "kids_friendly": "No",
+                "visitors": "1200000.0",
+                "crowd_level": "Moderate",
+                "activities": [
+                    "hiking",
+                    "cable car"
+                ],
+                "best_season": [
+                    "fall",
+                    "spring"
+                ],
+                "food": "Yudofu (tofu hot pot)"
+            },
+            {
+                "place": "Tokyo Skytree",
+                "city": "Tokyo",
+                "match_score": 55.0,
+                "budget_level": "high",
+                "solo_score": 8.0,
+                "kids_friendly": "Yes",
+                "visitors": "2500000.0",
+                "crowd_level": "Crowded",
+                "activities": [
+                    "panoramic views",
+                    "panoramic views"
+                ],
+                "best_season": [
+                    "fall",
+                    "spring"
+                ],
+                "food": "Ramen"
+            },
+            {
+                "place": "Disneyland",
+                "city": "Tokyo",
+                "match_score": 55.0,
+                "budget_level": "high",
+                "solo_score": 5.0,
+                "kids_friendly": "Yes",
+                "visitors": "18000000.0",
+                "crowd_level": "Very Crowded",
+                "activities": [
+                    "park rides",
+                    "park rides"
+                ],
+                "best_season": [
+                    "fall",
+                    "spring"
+                ],
+                "food": "Park Foods"
+            },
+            {
+                "place": "Universal Studios",
+                "city": "Osaka",
+                "match_score": 52.0,
+                "budget_level": "high",
+                "solo_score": 6.0,
+                "kids_friendly": "Yes",
+                "visitors": "14000000.0",
+                "crowd_level": "Very Crowded",
+                "activities": [
+                    "park rides",
+                    "park rides"
+                ],
+                "best_season": [
+                    "fall",
+                    "spring"
+                ],
+                "food": "Kushikatsu skewers:"
+            },
+            {
+                "place": "Yoyogi Park",
+                "city": "Tokyo",
+                "match_score": 46.0,
+                "budget_level": "low",
+                "solo_score": 10.0,
+                "kids_friendly": "Yes",
+                "visitors": "4000000.0",
+                "crowd_level": "Crowded",
+                "activities": [
+                    "walk",
+                    "photos"
+                ],
+                "best_season": [
+                    "fall",
+                    "spring"
+                ],
+                "food": "Park Snacks"
+            }
+        ],
+        "activities": []
+    }
+}

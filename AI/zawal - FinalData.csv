@@ -1,0 +1,115 @@
+Place,Activity1,Activity2,Solo traveller score,Activity Duration (in Hrs),Average age,Number of Visitors,Kids Friendly,First Season,Second Season,Activity lowBudget,Activity hiBudget,Food,Food lowBudget,Food hiBudget,Accomodation lowBudget,Accomodation hiBudget,Local language 1,Local langauge 2,City,Country
+Gyeongbokgung Palace,Walk,Photos,8,2,35,"3,400,000",Yes,Fall,Spring,3,5,Bibimbap,5,7,25,150,Korean,Korean,Seoul,South Korea
+Namsangol Hanok Village,Walk,Photos,9,1.5,30,"500,000",Yes,Fall,Spring,0,0,Milmyeon (cold wheat noodles),2,5,20,120,Korean,Korean,Seoul,South Korea
+N Seoul Tower,Hiking,Cable Car,7,3,28,"2,000,000",Yes,Fall,Spring,8,10,Mandu (dumplings),5,7,30,200,Korean,Korean,Seoul,South Korea
+Hongdae,shopping,cafes,9,4,25,"5,000,000",Yes,Fall,Spring,50,200,KBBQ,10,15,25,180,Korean,Korean,Seoul,South Korea
+Myeongdong,shopping,cafes,8,3,30,"4,000,000",Yes,Fall,Spring,30,150,Rice cake,2,4,30,200,Korean,Korean,Seoul,South Korea
+Myeongdong,Night Market,Night Market,7,2,31,"4,000,000",Yes,Fall,Spring,10,100,Street Food,10,150,30,200,Korean,Korean,Seoul,South Korea
+Itaewon,shopping,cafes,8,3,31,"1,000,000",Yes,Fall,Spring,50,300,KBBQ,10,15,35,250,Korean,Korean,Seoul,South Korea
+Haeundae Beach,Walk,Photos,8,2,30,"8,000,000",Yes,Summer,Spring,2,2,Eomuk (Fish cakes),5,5,25,150,Korean,Korean,Busan,South Korea
+Gamcheon Culture Village,Walk,Photos,9,2,33,"1,000,000",Yes,Summer,Spring,3,5,Milmyeon (Cold wheat noodles),5,7,25,130,Korean,Korean,Busan,South Korea
+Jagalchi Fish Market,Walk,Photos,8,1.5,40,"1,000,000",Yes,Summer,Spring,8,10,Sashimi,8,10,30,150,Korean,Korean,Busan,South Korea
+Hallasan Mountain,Hiking,Cable Car,6,6,34,"400,000",No,Summer,Spring,2,3,Seafood,10,12,25,150,Korean,Korean,Jeju Island,South Korea
+Manjanggul Cave,Walk,Photos,9,1.5,35,"300,000",Yes,Summer,Spring,5,7,Jeju black pork BBQ,10,12,25,150,Korean,Korean,Jeju Island,South Korea
+Yoyogi Park,Walk,Photos,10,2,28,"4,000,000",Yes,Fall,Spring,0,0,Park Snacks,5,100,30,180,Japanese,Japanese,Tokyo,Japan
+Meiji Shrine,Walk,Photos,9,1.5,31,"3,000,000",Yes,Fall,Spring,0,0,Gyudon (beef bowl),3,5,30,180,Japanese,Japanese,Tokyo,Japan
+Tokyo Skytree,Panoramic views,Panoramic views,8,2,32,"2,500,000",Yes,Fall,Spring,18,28,Ramen,4,8,35,250,Japanese,Japanese,Tokyo,Japan
+Disneyland,Park Rides,Park Rides,5,8,28,"18,000,000",Yes,Fall,Spring,65,75,Park Foods,20,250,40,300,Japanese,Japanese,Tokyo,Japan
+Osaka Castle,Panoramic views,Panoramic views,9,2,35,"2,700,000",Yes,Fall,Spring,6,6,Okonomiyaki,4,9,30,150,Japanese,Japanese,Osaka,Japan
+Universal Studios,Park Rides,Park Rides,6,7,7,"14,000,000",Yes,Fall,Spring,55,70,Kushikatsu skewers:,1,20,35,220,Japanese,Japanese,Osaka,Japan
+Iconic Torii Gates,Hiking ,Cable Car,7,4,4,"1,200,000",No,Fall,Spring,0,0,Yudofu (tofu hot pot),7,18,30,180,Japanese,Japanese,Kyoto,Japan
+Kiyomizu-dera Temple,Walk,Panoramic views,9,2,2,"1,500,000",Yes,Fall,Winter,4,4,Soup curry,7,25,35,200,Japanese,Japanese,Kyoto,Japan
+Arashiyama Bamboo Grove,Boat Ride,Boat Ride,8,2,34,"1,000,000",Yes,Fall,Winter,7,7,Fresh crab/seafood,15,25,32,170,Japanese,Japanese,Kyoto,Japan
+National Museum,Snorkeling,Snorkeling,7,3,31,"800,000",No,Summer,Spring,1.3,1.3,Nasi Goreng (fried rice),1,2,15,80,Indonesian,Indonesian,Jakarta,Indonesia
+Ancol Dreamland,Park Rides,Park Rides,5,6,25,"3,500,000",Yes,Fall,Spring,6,300,Park Foods,20,200,18,100,Indonesian,Indonesian,Jakarta,Indonesia
+Ubud Monkey Forest,Walk,Photos,9,1.5,31,"1,200,000",Yes,Fall,Spring,5,15,chicken satay,2,3,15,80,Indonesian,Indonesian,Bali,Indonesia
+Menjangan Island,Snorkeling,Snorkeling,6,4,29,"300,000",No,Summer,Spring,5,30,Mie Goreng,5,10,18,100,Indonesian,Indonesian,Bali,Indonesia
+Jardin Majorelle,Walk,Photos,9,1,40,"800,000",Yes,Fall,Winter,7,10,Tagine,3,9,20,120,Arabic,English,Marrakech,Morocco
+Bahia Palace,Bike Ride,Bike Ride,7,2,35,"600,000",Yes,Fall,Winter,3,8,couscous,20,35,22,130,Arabic,English,Marrakech,Morocco
+Sahara Desert,Sand Surfing,Photos,6,8,32,"500,000",No,Fall,Winter,150,300,Zaalouk,4,12,25,150,Arabic,English,Marrakech,Morocco
+Medina souk,shopping,cafes,8,3,30,"1,200,000",Yes,Fall,Winter,50,250,Makouda,1,2,20,110,Arabic,English,Marrakech,Morocco
+Hassan II Mosque,Walk,Photos,9,1.5,38,"900,000",Yes,Fall,Spring,12,20,Pastilla (Pie),5,12,25,140,Arabic,English,Casablanca,Morocco
+Royal sites,Camel rides,Photos,7,3,36,"400,000",Yes,Fall,Spring,15,30,Msemen (Flat Bread),2,3,30,160,Arabic,English,Casablanca,Morocco
+Pyramids of Giza,Camel rides,Photos,7,4,42,"4,500,000",Yes,Fall,Winter,13,15,Koshary,1,3,20,120,Arabic,English,Giza,Egypt
+Egyptian Museum,Walk,Photos,9,2,45,"1,800,000",Yes,Fall,Winter,11,11,Mahshi (Rice stuffed Vegetables),15,50,18,100,Arabic,English,Giza,Egypt
+Grand Egyptian Museum (GEM),Walk,Photos,9,2.5,40,"1,200,000",Yes,Fall,Winter,15,15,Egyptian BBQ,30,250,25,150,Arabic,English,Cairo,Egypt
+Valley of the Kings,Walk,Photos,8,3,43,"800,000",Yes,Fall,Winter,15,22,Pigeons,8,17,22,130,Arabic,English,Luxor ,Egypt
+Luxor & Karnak Temples,Walk,Photos,9,3,35,"1,500,000",Yes,Fall,Winter,12,15,Feteer Meshaltet,15,37,20,110,Arabic,English,Luxor ,Egypt
+Colossi of Memnon,Hot Air Balloon Ride,Photos,6,4,28,"300,000",No,Fall,Winter,100,150,shawarma,3,5,25,140,Arabic,English,Luxor ,Egypt
+Nile Cruise,Cruise Ride,Photos,5,24,40,"200,000",Yes,Fall,Spring,100,400,Cruise Food,0,0,80,350,Arabic,English,Aswan,Egypt
+Qaitbay Citadel,Walk,Photos,8,1.5,30,"600,000",Yes,Fall ,Spring,3,5,Seafood,7,50,20,100,Arabic,English,Alexandria,Egypt
+Red Sea Resorts,Snorkeling,Diving,7,5,25,"1,200,000",No,Summer,Spring,35,100,Resort Food,0,0,40,250,Arabic,English,Sharm El Sheikh,Egypt
+Red Sea Resorts,Safari,Camping,5,6,22,"150,000",No,Summer,Spring,40,200,Resort Food,0,0,25,120,Arabic,English,Sharm El Sheikh,Egypt
+Blue Hole,Snorkeling,Diving,8,3,28,"1,800,000",Yes,Summer,Spring,70,150,Seafood,15,80,30,150,Arabic,English,Dahab,Egypt
+Ras Abu Galloum,Safari,Camping,9,2.5,32,"500,000",Yes,Summer,Spring,40,200,Bedouin Food,20,130,35,160,English,English,Dahab,Egypt
+Table Mountain,Cable Car ,Photos,7,8,45,"400,000",No,Fall,Winter,20,25,Bunny Chow (Curry in bread),3,5,40,200,English,English,Cape Town,South Africa
+Robben Island,Walk,Photos,9,2,40,"300,000",Yes,Fall,Winter,5,10,Boerewors Roll (Grilled sausage),2,3,30,140,English,English,Cape Town,South Africa
+Winelands day trip,Wine tasting,Photos,6,8,42,"500,000",Yes,Fall,Winter,20,40,Gatsby Sandwich,4,6.5,35,220,English,English,Cape Town,South Africa
+Apartheid Museum,Walk,Photos,9,1.5,38,"3,200,000",Yes,Fall,Winter,5,15,Vetkoek (Fried Dough),2,3,45,250,English,English,Johannesburg,South Africa
+Kruger National Park,Walk,Photos,8,1,35,"2,800,000",Yes,Fall,Spring,30,30,Potjiekos (Meat stew),5,10,45,200,English,English,Kruger,South Africa
+Kruger National Park,Safari,Camping,7,4,30,"1,500,000",Yes,Fall,Spring,80,190,Biltong (Dried cured meat),2,3,40,180,English,English,Kruger,South Africa
+Opera House,Walk,Photos,9,2,45,"1,200,000",Yes,Summer ,Spring,0,0,Fish & Chips,5,18,40,200,English,English,Sydney,Australia
+Harbour Bridge,Walk,Photos,8,1.5,35,"2,800,000",Yes,Summer ,Spring,0,0,Meat Pie,15,30,45,250,English,English,Sydney,Australia
+Manly beach,Cruise Ride,Photos,7,4,30,"1,500,000",Yes,Summer ,Spring,40,65,Lamb BBQ,15,45,40,200,English,English,Sydney,Australia
+National Gallery of Victoria,Walk,Photos,9,2,45,"1,000,000",Yes,Summer ,Spring,15,15,Kangaroo Steak,20,35,40,180,English,English,Melbourne,Australia
+Yarra Valley,Wine tasting,Wine tasting,7,6,42,"800,000",No,Summer ,Spring,15,40,Snags (Sausage rolls),3,8,50,220,English,English,Melbourne,Australia
+MONA museum,Walk,Photos,9,3,38,"500,000",Yes,Summer ,Spring,30,60,Seafood,20,40,45,180,Engllish,English,Tasmania,Australia
+Hagia Sophia,Walk,Photos,9,2,40,"3,700,000",Yes,Fall,Spring,10,20,Midye Dolma (Stuffed Mussel),1,20,25,150,Turkish,Turkish,Istanbul,Turkey
+Blue Mosque,Walk,Photos,9,1.5,38,"3,000,000",Yes,Fall,Spring,0,0,Simit (bagel),1,1,25,150,Turkish,Turkish,Istanbul,Turkey
+Basilica Cistern,Walk,Photos,8,1,42,"1,200,000",Yes,Fall,Spring,5,10,Cig Kofte (Meatless Wrap),2,5,30,160,Turkish,Turkish,Istanbul,Turkey
+Bosphorus,Ferry Ride,Ferry Ride,8,2,35,"2,500,000",Yes,Fall,Spring,20,40,Inegol Kofte (Meatballs),3,7,35,200,Turkish,Turkish,Istanbul,Turkey
+Grand Bazaar,shopping,cafes,7,4,32,"4,000,000",Yes,Fall,Spring,30,500,Adana Kebabı (Lamb Kebab),5,8,30,180,Turkish,Turkish,Istanbul,Turkey
+central Turkey,Hot air balloon ride,Photos,6,4,38,"1,000,000",No,Fall,Spring,150,250,Doner kebab,3,10,40,300,Turkish,Turkish,Cappadocia,Turkey
+Duden Waterfalls,Boat Ride,Boat Ride,8,2,36,"800,000",Yes,Fall,Spring,20,40,Kokorec(Grilled Offal),2,5,25,140,Turkish,Turkish,Antalya,Turkey
+Antalya Archaeology Museum,Walk,Photos,9,2,45,"600,000",Yes,Fall,Spring,15,20,Lahmacun (Pie),1,4,30,160,Turkish,Turkish,Antalya,Turkey
+Acropolis Museum,Walk,Photos,9,2.5,42,"1,500,000",Yes,Fall,Winter,38,45,Gyro,2,7,35,180,Greek,Greek,Athens,Greece
+Temple of Zeus,Walk,Photos,9,1.5,40,"1,200,000",Yes,Fall,Winter,21,26,Souvlaki (Meat Skewers),5,24,35,180,Greek,Greek,Athens,Greece
+Mycenae Archaeological Site,Walk,Photos,9,3,45,"1,200,000",Yes,Fall,Winter,21,22,Lamb Kleftiko,7,22,30,160,Greek,Greek,Athens,Greece
+Santorini Island,Island Cruise,Island Cruise,7,8,38,"500,000",Yes,Summer ,Spring,20,20,Taverna,5,9,60,350,Greek,Greek,Santorini Island,Greece
+Mykonos Island,Island Cruise,Island Cruise,7,8,35,"1,800,000",Yes,Summer ,Spring,22,22,Moussaka (Lamb Dish),14,25,70,400,Greek,Greek,Mykonos Island,Greece
+Louvre Museum,Walk,Photos,9,4,42,"1,500,000",Yes,Fall,Spring,18,20,Taverna-style meal,27,44,50,300,French,French,Paris,France
+Eiffel Tower,Walk,Photos,8,2,35,"9,600,000",Yes,Fall,Spring,12,19,Baguette sandwich,15,32,60,350,French,French,Paris,France
+Le Marais,Bike Ride,Bike Ride,8,3,32,"7,000,000",Yes,Fall,Spring,25,35,Pissaladière,5,9,55,280,French,French,Paris,France
+Disneyland,Park Rides,Park Rides,5,10,28,"2,500,000",Yes,Fall,Spring,90,115,Park Foods,20,250,70,450,French,French,Paris,France
+Cours Saleya Market,shopping,cafes,7,2,40,"15,000,000",Yes,Fall,Spring,3,130,Bistro Meals,16,22,45,220,French,French,Nice,France
+Matisse Museum,Walk,Photos,9,1.5,45,"1,200,000",Yes,Summer ,Spring,11,11,Quiche,20,27,50,250,French,French,Nice,France
+Festival of Lights,Walk,Photos,8,3,38,"800,000",Yes,Winter,Winter,3,5,Socca,1,2,55,270,French,French,Lyon,France
+Nuits de Fourvière Theatre,Attend Shows,Photos,6,3,42,"1,500,000",Yes,Summer ,Summer ,20,40,Crepes,10,15,50,240,French,French,Lyon,France
+Gastronomy trail,Wine tasting,Wine tasting,7,5,45,"600,000",No,Fall,Spring,30,70,Tour Food,0,0,60,300,French,French,Lyon,France
+Prado Museum,Walk,Photos,9,3,45,"400,000",Yes,Fall,Spring,17,17,Paella Valenciana,13,20,35,200,Spanish,English,Madrid,Spain
+Royal Palace,Walk,Photos,9,2,42,"3,400,000",Yes,Fall,Spring,13,13,Menú del día,9,15,40,220,Spanish,English,Madrid,Spain
+Parque de Atracciones,Park Rides,Park Rides,5,6,25,"1,800,000",Yes,Fall,Spring,22,33,Park Foods,15,200,45,180,Spanish,English,Madrid,Spain
+Sagrada Familia,Panoramic views,Photos,8,2.5,38,"1,200,000",Yes,Fall,Spring,28,28,Tapas,11,17,50,250,Spanish,English,Barcelona,Spain
+Park Guell,Panoramic views,Photos,8,2,35,"4,500,000",Yes,Fall,Spring,11,11,Bocadillo de calamares (Squid),5,7,45,230,Spanish,English,Barcelona,Spain
+Plaza de Espana & Cathedral,Boat Ride,Boat Ride,7,1.5,40,"3,200,000",Yes,Fall,Spring,11,13,Albondigas (Meatballs),9,16,40,210,Spanish,English,Seville,Spain
+Flamenco Plaza,Attend Shows,Photos,6,2,45,"1,500,000",Yes,Fall,Spring,22,45,Churros,7,15,35,200,Spanish,English,Seville,Spain
+The Alhambra palace,Walk,Photos,9,3,42,"800,000",Yes,Fall,Spring,15,16,Boquerones Fritos (Anchovy),17,23,40,220,Spanish,English,Granada,Spain
+Brandenburg Gate,Walk,Photos,9,1,38,"2,400,000",Yes,Fall,Spring,0,0,Currywurst,5,7,45,200,German,English,Berlin,Germany
+Museum Island,Walk,Photos,9,4,45,"5,000,000",Yes,Fall,Spring,10,10,German pastries,2,4,50,220,German,English,Berlin,Germany
+Spree River,Boat Ride,Boat Ride,8,2,35,"3,000,000",Yes,Summer ,Spring,24,24,WeiBwurst,9,11,45,210,German,English,Berlin,Germany
+Deutschland Museum,Walk,Photos,9,3,42,"1,200,000",Yes,Fall,Winter,11,17,Schnitzel,12,17,50,230,German,English,Berlin,Germany
+BMW Museum,Walk,Photos,8,2,40,"1,500,000",Yes,Summer ,Summer ,11,11,Eisbein,12,19,40,240,German,English,Munich,Germany
+Filmfest Munchen,Attend Shows,Photos,6,3,38,"900,000",Yes,Summer ,Spring,11,22,Doner kebab,5,7,35,220,German,English,Munich,Germany
+Olympia park,Attend Shows,Photos,7,2,32,"500,000",Yes,Fall,Spring,0,0,Park Foods,15,150,40,230,German,English,Munich,Germany
+Ellis Island ferry,Boat Ride,Boat Ride,7,3,40,"1,000,000",Yes,Fall,Spring,25,30,Craft Pizza,20,25,35,300,German,English,New York City,United States
+Top of the Rock,Walk,Photos,8,1.5,28,"2,500,000",Yes,Fall,Spring,40,40,Hot dogs,9,15,65,320,English,English,New York City,United States
+Empire State,Walk,Photos,8,2,32,"4,000,000",Yes,Fall,Spring,40,40,Bagel Sandwiches,12,23,70,350,English,English,New York City,United States
+Golden Gate Bridge,Walk,Photos,9,1.5,32,"10,000,000",Yes,Fall,Spring,0,0,Burritos,10,12,60,280,English,English,San Francisco,United States
+Alcatraz Island,Panoramic views,Panoramic views,7,3,34,"1,400,000",Yes,Fall,Spring,45,45,Seafood,25,50,65,300,English,English,San Francisco,United States
+Griffith Observatory,Panoramic views,Panoramic views,8,2,32,"1,800,000",Yes,Fall,Spring,8,10,Tacos,8,18,55,250,English,English,Los Angeles,United States
+Hollywood Sign,Hiking ,Camping,6,4,30,"500,000",No,Fall,Spring,0,0,Hickory Burger,11,25,50,220,English,English,Los Angeles,United States
+The Broad Museum,Walk,Photos,9,2,35,"900,000",Yes,Fall,Spring,0,0,French Dip Sandwich,8,13,60,270,English,English,Los Angeles,United States
+Architecture River Cruise,Cruise Ride,Cruise Ride,7,2,42,"600,000",Yes,Fall,Spring,45,45,Deep-dish pizza,18,35,55,260,English,English,Chicago,United States
+Art Institute of Chicago,Walk,Photos,9,3,28,"1,500,000",Yes,Fall,Spring,25,25,Fried Chicken,13,40,50,240,English,English,Chicago,United States
+Shedd Aquarium,Walk,Photos,8,2.5,36,"2,000,000",Yes,Fall,Spring,40,40,Rainbow Cone,6,18,55,250,English,English,Chicago,United States
+Sugarloaf Mountain,Hiking,Cable Car,7,4,30,"1,200,000",Yes,Summer ,Spring,25,30,acaraje,2,10,30,150,Portuguese,Portuguese,Rio de Janeiro,Brazil
+Ipanema beaches,Walk/photos,Photos,9,3,34,"5,000,000",Yes,Summer ,Spring,0,0,pastel,1,5,35,180,Portuguese,Portuguese,Rio de Janeiro,Brazil
+Tijuca National Park,Boat Ride,Boat Ride,8,5,38,"800,000",Yes,Summer ,Spring,12,18,Feijoada (Stuffed Fried dough),6,17,40,200,Portuguese,Portuguese,Rio de Janeiro,Brazil
+Sambadrome,Attend Shows,Photos,6,4,32,"600,000",Yes,Summer ,Spring,5,15,Farofa (Fried Bacon),12,15,45,220,Portuguese,Portuguese,Rio de Janeiro,Brazil
+Avenida Paulista,Walk,Photos,8,2,31,"3,000,000",Yes,Summer ,Spring,0,0,Brigadeiros (Sweet Porridge),8,15,50,250,Portuguese,Portuguese,Sao Paulo,Brazil
+MASP museum,Walk,Photos,9,2.5,42,"1,200,000",Yes,Summer ,Spring,10,10,Costela (Beef Ribs),17,28,55,260,Portuguese,Portuguese,Sao Paulo,Brazil
+Frida Kahlo Museum,Walk,Photos,9,2,28,"1,000,000",Yes,Fall,Spring,16,16,Quesadilla,2,5,30,160,Spanish,Spanish,Mexico City,Mexico
+Historic Zocalo,Walk,Photos,8,1.5,35,"3,500,000",Yes,Fall,Spring,0,0,Tamal,3,6,25,140,Spanish,Spanish,Mexico City,Mexico
+Metropolitan Cathedral,Walk,Photos,9,1,35,"2,800,000",Yes,Fall,Spring,0,0,Seafood,15,50,30,150,Spanish,Spanish,Mexico City,Mexico
+Xochimilco trajinera,Boat Ride,Boat Ride,7,4,32,"1,200,000",Yes,Fall,Spring,18,18,Gringo BBQ,20,48,35,180,Spanish,Spanish,Mexico City,Mexico
+Chichen Itza Mayan Ruins,Walk,Photos,8,5,34,"2,600,000",Yes,Fall,Spring,36,36,Street Tacos,1,2,40,200,Spanish,Spanish,Cancun,Mexico
