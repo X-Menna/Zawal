@@ -13,3 +13,4 @@ requests -> pip install requests
 python-dotenv -> pip install python-dotenv	
 openai -> pip install openai	
 cachetools -> pip install cachetools
+pip install fastapi
