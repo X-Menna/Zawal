@@ -5,7 +5,7 @@ import 'package:zawal/widgets/result.dart';
 class RecommendationScreen extends StatelessWidget {
   final Map<String, dynamic> response;
 
-  const RecommendationScreen({Key? key, required this.response}) : super(key: key);
+  const RecommendationScreen({super.key, required this.response});
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zawal/screens/Home_screen.dart';
-import 'package:zawal/screens/reccomendation_screen.dart';
+import 'package:zawal/screens/recomendation_screen.dart';
 import '../screens/splash_screen.dart';
 import '../screens/welcome_screen.dart';
 import '../screens/login_screen.dart';

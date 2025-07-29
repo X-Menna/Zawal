@@ -4,7 +4,7 @@ import 'package:zawal/constants/app_colors.dart';
 import 'package:zawal/cubits/theme_cubit.dart';
 import 'package:zawal/cubits/trip_cubit.dart';
 import 'package:zawal/screens/profilescreen.dart';
-import 'package:zawal/screens/reccomendation_screen.dart';
+import 'package:zawal/screens/recomendation_screen.dart';
 import 'package:zawal/widgets/country_tiles.dart';
 import 'package:zawal/widgets/trip_dialog.dart';
 
