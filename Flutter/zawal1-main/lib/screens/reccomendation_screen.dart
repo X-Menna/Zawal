@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zawal/models/recommendation_model.dart';
 import 'package:zawal/widgets/result.dart';
+
 class RecommendationScreen extends StatelessWidget {
   final Map<String, dynamic> response;
 
@@ -8,13 +9,27 @@ class RecommendationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final data = recommendation_model.fromJson(response);
+    late final recommendation_model? parsedData;
+
+    try {
+      parsedData = recommendation_model.fromJson(response);
+    } catch (e) {
+      parsedData = null;
+    }
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Recommendations')),
-      body: RecommendationResultsWidget(data: data),
+      appBar: AppBar(
+        title: const Text('Your Trip Result'),
+        centerTitle: true,
+      ),
+      body: parsedData != null
+          ? RecommendationResultsWidget(data: parsedData)
+          : const Center(
+              child: Text(
+                "Failed to load recommendation data.",
+                style: TextStyle(color: Colors.red),
+              ),
+            ),
     );
   }
 }
-
-
