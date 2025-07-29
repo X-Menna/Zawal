@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zawal/screens/reccomendation_screen.dart';
 import '../constants/app_textstyles.dart';
-import '../widgets/custom_button.dart';
 import '../cubits/trip_cubit.dart';
 import '../models/trip_model.dart';
 
@@ -49,21 +48,27 @@ class _TripDialogState extends State<TripDialog> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<TripCubit, TripState>(
-      listener: (context, state) {
-        if (state is TripSuccess) {
-          Navigator.of(context).pop(); // close the dialog
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (_) => RecommendationScreen(response: state.responseData!),
-            ),
-          );
-        } else if (state is TripFailure) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text("Error: ${state.error}")),
-          );
-        }
-      },
+  listener: (context, state) {
+    if (state is TripLoading) {
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) => const Center(child: CircularProgressIndicator()),
+      );
+    } else if (state is TripSuccess) {
+      Navigator.of(context, rootNavigator: true).pop(); 
+      Navigator.pop(context);
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => const RecommendationScreen(response: {},)),
+      );
+    } else if (state is TripLoadingFailed) {
+      Navigator.of(context, rootNavigator: true).pop(); 
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Failed to fetch recommendations")),
+      );
+    }
+  },
       child: AlertDialog(
         title: Text('Trip Details', style: AppTextStyles.heading),
         content: SingleChildScrollView(

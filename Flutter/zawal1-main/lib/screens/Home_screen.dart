@@ -57,13 +57,19 @@ class HomeScreen extends StatelessWidget {
   builder: (context, state) {
     if (state is TripLoading) {
       return const CircularProgressIndicator();
-    } else if (state is TripFailure) {
-      return Text("Error: ${state.error}");
-    } else if (state is TripSuccess && state.responseData != null) {
-      final data = state.responseData!;
-      final status = data['Status'] ?? 'Unknown status';
-      final message = data['Message'] ?? '';
-      final firstAlternative = (data['Alternatives'] as List?)?.first;
+    } else if (state is TripLoadingFailed) {
+      return const Text("Failed to fetch recommendations.");
+    } else if (state is TripSuccess) {
+      final cubit = context.read<TripCubit>();
+      final data = cubit.response;
+
+      if (data == null) return const Text("No data available.");
+
+      final status = data.status ?? 'Unknown';
+      final message = data.message ?? '';
+      final firstAlternative = data.alternatives?.isNotEmpty == true
+          ? data.alternatives!.first
+          : null;
 
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,8 +78,8 @@ class HomeScreen extends StatelessWidget {
           if (message.isNotEmpty) Text("Message: $message"),
           const SizedBox(height: 8),
           if (firstAlternative != null) ...[
-            Text("Recommended: ${firstAlternative['country']}"),
-            Text("Score: ${firstAlternative['score']}"),
+            Text("Recommended: ${firstAlternative.country}"),
+            Text("Score: ${firstAlternative.score}"),
           ],
         ],
       );
@@ -82,6 +88,7 @@ class HomeScreen extends StatelessWidget {
     }
   },
 )
+
 
             
           ),
