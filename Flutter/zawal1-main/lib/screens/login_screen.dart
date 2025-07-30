@@ -67,9 +67,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       final prefs = await SharedPreferences.getInstance();
 
                       await prefs.setBool('login', true);
-                      await prefs.setString('token', cubit.loginModel.token);
-                      await prefs.setString('email', cubit.loginModel.email);
-                      await prefs.setString('userId', cubit.loginModel.userId);
+                      await prefs.setString('token', state.model.token);
+                      await prefs.setString('email', state.model.email);
+                      await prefs.setString('userId', state.model.userId);
 
                       Navigator.pushNamedAndRemoveUntil(
                         context,

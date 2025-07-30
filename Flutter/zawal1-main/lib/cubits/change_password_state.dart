@@ -1,12 +1,19 @@
-abstract class ChangePasswordState {}
+import 'package:zawal/models/change_password.dart';
 
-class ChangePasswordInitial extends ChangePasswordState {}
+abstract class UpdatePasswordState {}
 
-class ChangePasswordLoading extends ChangePasswordState {}
+class UpdatePasswordInitial extends UpdatePasswordState {}
 
-class ChangePasswordSuccess extends ChangePasswordState {}
+class UpdatePasswordLoading extends UpdatePasswordState {}
 
-class ChangePasswordError extends ChangePasswordState {
+class UpdatePasswordSuccess extends UpdatePasswordState {
+  final UpdatePasswordModel model;
+
+  UpdatePasswordSuccess(this.model);
+}
+
+class UpdatePasswordError extends UpdatePasswordState {
   final String error;
-  ChangePasswordError(this.error);
+
+  UpdatePasswordError(this.error);
 }

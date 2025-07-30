@@ -12,8 +12,8 @@ class RegisterSuccess extends RegisterState {
   RegisterSuccess(this.user);
 }
 
-class RegisterFailure extends RegisterState {
+class RegisterError extends RegisterState {
   final String error;
 
-  RegisterFailure(this.error);
+  RegisterError(this.error);
 }

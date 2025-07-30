@@ -46,12 +46,9 @@ class _SignupScreenState extends State<SignupScreen> {
       child: BlocConsumer<RegisterCubit, RegisterState>(
         listener: (context, state) async {
           if (state is RegisterSuccess) {
-            final prefs = await SharedPreferences.getInstance();
-            await prefs.setBool('login', true);
-            await prefs.setString('username', usernameController.text);
-            await prefs.setString('birthdate', birthdateController.text);
-            await prefs.setString('phone', phoneController.text);
-            await prefs.setString('password', passController.text);
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(SnackBar(content: Text(state.user.message)));
 
             if (!context.mounted) return;
 
@@ -64,7 +61,8 @@ class _SignupScreenState extends State<SignupScreen> {
             emailController.clear();
             passController.clear();
             phoneController.clear();
-          } else if (state is RegisterFailure) {
+          } else if (state is RegisterError) {
+            print(' Register Error: ${state.error}');
             ScaffoldMessenger.of(
               context,
             ).showSnackBar(SnackBar(content: Text(state.error)));
@@ -256,8 +254,8 @@ class _SignupScreenState extends State<SignupScreen> {
                                 if (_formKey.currentState!.validate()) {
                                   RegisterCubit.get(context).userRegister(
                                     username: usernameController.text,
-                                    email: emailController.text,
                                     password: passController.text,
+                                    email: emailController.text,
                                     birthDate: birthdateController.text,
                                     phone: phoneController.text,
                                   );

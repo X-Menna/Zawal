@@ -1,36 +1,35 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zawal/cubits/change_password_state.dart';
-import 'package:zawal/dio.dart';
+import 'package:zawal/models/change_password.dart';
 
-class ChangePasswordCubit extends Cubit<ChangePasswordState> {
-  ChangePasswordCubit() : super(ChangePasswordInitial());
+import '../../dio.dart';
 
-  static ChangePasswordCubit get(context) => BlocProvider.of(context);
+class UpdatePasswordCubit extends Cubit<UpdatePasswordState> {
+  UpdatePasswordCubit() : super(UpdatePasswordInitial());
 
-  Future<void> changePassword({
-    required String userId,
-    required String oldPassword,
+  static UpdatePasswordCubit get(context) => BlocProvider.of(context);
+
+  void updatePassword({
+    required String username,
+    required String currentPassword,
     required String newPassword,
   }) async {
-    emit(ChangePasswordLoading());
+    emit(UpdatePasswordLoading());
 
     try {
       final response = await DioHelper.postData(
-        url: 'auth/change-password', // تأكد من صحة المسار مع الباك
+        url: 'auth/update-password',
         data: {
-          'userId': userId,
-          'oldPassword': oldPassword,
-          'newPassword': newPassword,
+          'username': username,
+          'currentpassword': currentPassword,
+          'newpassword': newPassword,
         },
       );
 
-      if (response.statusCode == 200) {
-        emit(ChangePasswordSuccess());
-      } else {
-        emit(ChangePasswordError('Something went wrong'));
-      }
+      final model = UpdatePasswordModel.fromJson(response.data);
+      emit(UpdatePasswordSuccess(model));
     } catch (e) {
-      emit(ChangePasswordError(e.toString()));
+      emit(UpdatePasswordError(e.toString()));
     }
   }
 }
