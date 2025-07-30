@@ -3,7 +3,9 @@ class EndPoints {
 
   // static const String baseUrl = 'https://api.yourbackend.com';
   
-  static const String baseUrl = 'http://localhost:4000';
+  //static const String baseUrl = 'http://192.168.1.5:4040';
+
+  static const String baseUrl = 'http://192.168.1.9';
 
   // Auth
   static const String login = '$baseUrl/auth/login';

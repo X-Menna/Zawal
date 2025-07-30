@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zawal/models/register_model.dart';
 import 'package:zawal/dio.dart';
 import 'register_state.dart';
+import 'package:zawal/constants/end_points.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit() : super(RegisterInitial());
@@ -18,7 +19,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     emit(RegisterLoading());
     try {
       final response = await DioHelper.postData(
-        url: 'auth/register', // POST /api/auth/register
+        url: EndPoints.register,
         data: {
           "username": username,
           "email": email,
